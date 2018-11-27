@@ -1,0 +1,66 @@
+.app-title {
+  color: red;
+  text-align: center;
+}
+
+.circle {
+  position: relative;
+  border: solid black 1px;
+  padding: 0;
+  margin: 1em auto;
+  width: 20em;
+  height: 20em;
+  border-radius: 50%;
+  list-style: none;
+  overflow: hidden;
+}
+
+li {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
+}
+
+.slice-color {
+  position: absolute;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  text-align: center;
+  transform: skewY(18deg) rotate(deg);
+  padding-top: 20px;
+}
+
+li:first-child {
+  transform: rotate(0deg) skewY(-18deg);
+  background: red;    
+}
+li:nth-child(2) {
+  transform: rotate(72deg) skewY(-18deg);  
+  background: blue;       
+}
+li:nth-child(3) {
+  transform: rotate(144deg) skewY(-18deg);
+  background: green;         
+}
+li:nth-child(4) {
+  transform: rotate(216deg) skewY(-18deg); 
+  background: yellow;   
+}
+li:nth-child(5) {
+  transform: rotate(288deg) skewY(-18deg); 
+  background: purple;  
+}
+
+.project-wrapper {
+  display: flex;
+  flex-direction: row;
+}  
+
+.project {
+  padding: 20px;
+}

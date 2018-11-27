@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Palette Picker</title>
+  <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+  <h1 class='app-title'>Palette Picker</h1>
+
+  <section class="palette-creator">
+    <ul class="circle">
+      <li><div class="slice-color color1"></div></li>
+      <li><div class="slice-color color2"></div></li>
+      <li><div class="slice-color color3"></div></li>
+      <li><div class="slice-color color4"></div></li>
+      <li><div class="slice-color color5"></div></li>
+    </ul>  
+  </section>
+
+  <button class='create-palette'>Create a New Palette</button>
+  <fieldset>
+    <legend>Save this Palette</legend>
+    <form class="form-save-palette">
+      <select name="Project">
+        <option class='project-selection' value="project1">Project #1</option>
+        <option class='project-selection' value="project2">Project #2</option>
+      </select>
+      <input type="text" class="new-palette-input">
+      <button class="save-palette-btn">Save Palette</button>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend>Create a New Project</legend>
+    <form class="form-save-project">
+      <input type="text" class="new-project-input">
+      <button class="save-project-btn">Save Project</button>
+    </form>
+
+    <div class='project-wrapper'>    
+      <section class='project project-one'>
+        <h3>Project#1</h3>
+        <div><p>Palette #1</p></div>
+        <div><p>Palette #2</p></div> 
+      </section>
+
+      <section class='project project-two'>
+        <h3>Project#2</h3>
+        <div><p>Palette #1</p></div>
+        <div><p>Palette #2</p></div> 
+      </section>
+    </div>
+
+  </fieldset>
+
+  <script src='js/jquery-3.3.1.min.js'></script>
+  <script src='js/script.js'></script>
+</body>
+</html>
