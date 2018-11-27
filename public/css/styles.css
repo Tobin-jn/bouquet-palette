@@ -35,23 +35,23 @@ li {
   padding-top: 20px;
 }
 
-li:first-child {
+.color1 {
   transform: rotate(0deg) skewY(-18deg);
   background: red;    
 }
-li:nth-child(2) {
+.color2 {
   transform: rotate(72deg) skewY(-18deg);  
   background: blue;       
 }
-li:nth-child(3) {
+.color3 {
   transform: rotate(144deg) skewY(-18deg);
   background: green;         
 }
-li:nth-child(4) {
+.color4 {
   transform: rotate(216deg) skewY(-18deg); 
   background: yellow;   
 }
-li:nth-child(5) {
+.color5 {
   transform: rotate(288deg) skewY(-18deg); 
   background: purple;  
 }
