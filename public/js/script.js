@@ -42,9 +42,11 @@ function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
 }
 
 function lockColor() {
-  console.log('test')
-  $(this).attr("disabled", true)
-  console.log($(this))
+  if (!$(this).attr('disabled')) {
+    $(this).attr("disabled", true) 
+  } else {
+    $(this).removeAttr("disabled")
+  }
 }
  
 
