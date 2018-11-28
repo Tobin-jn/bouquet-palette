@@ -1,6 +1,12 @@
 .app-title {
   color: red;
   text-align: center;
+  font-size: 3em;
+}
+
+.palette-creator {
+  display: flex;
+  flex-direction: row;
 }
 
 .palette {
@@ -8,8 +14,8 @@
   border: solid black 1px;
   padding: 0;
   margin: 1em auto;
-  width: 20em;
-  height: 20em;
+  width: 25em;
+  height: 25em;
   border-radius: 50%;
   list-style: none;
   overflow: hidden;
@@ -65,8 +71,34 @@ li:nth-child(5) {
   padding: 20px;
 }
 
+
+.hexCode-container {
+  display: flex;
+  flex-direction: row;
+}
+
 .color-circle {
   width: 20px;
   height: 20px;
   background: black;
+  margin: 10px 0px;
 }
+
+.hex-code {
+  margin: 10px;
+}
+
+.create-palette {
+  font-size: 1.5em;
+  padding: 10px;
+  margin: 10px;
+}
+
+.save-project-container,
+.create-project-container {
+  margin: 20px;
+}
+
+
+
+
