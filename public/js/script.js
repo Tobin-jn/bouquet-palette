@@ -1,4 +1,4 @@
-// const hexCode = require('../utilities/utilities.js');
+// const hexCode = require('./utilities.js');
 
 const $createPalette = $('.create-palette')
 
@@ -58,7 +58,6 @@ function lockColor() {
   }
 }
  
-
 
 
 const generateHexCode = () => {
