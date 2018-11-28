@@ -2,23 +2,49 @@
 <html>
 <head>
   <title>Palette Picker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="css/styles.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 </head>
 <body>
   <h1 class='app-title'>Palette Picker</h1>
 
   <section class="palette-creator">
-    <ul class="circle">
+    <ul class="palette">
       <li><div class="slice-color color1"></div></li>
       <li><div class="slice-color color2"></div></li>
       <li><div class="slice-color color3"></div></li>
       <li><div class="slice-color color4"></div></li>
       <li><div class="slice-color color5"></div></li>
     </ul>  
+
+    <section class="color-codes">
+      <div class="hexCode-container">      
+        <div class="color-circle circle1"></div>
+        <p class='hex-code code1'>#------</p>
+      </div>
+      <div class="hexCode-container"> 
+        <div class="color-circle circle2"></div>
+        <p class='hex-code code2'>#------</p>
+      </div>
+      <div class="hexCode-container"> 
+        <div class="color-circle circle3"></div>
+        <p class='hex-code code3'>#------</p>
+      </div>
+      <div class="hexCode-container"> 
+        <div class="color-circle circle4"></div>
+        <p class='hex-code code4'>#------</p>
+      </div>
+      <div class="hexCode-container"> 
+        <div class="color-circle circle5"></div>
+        <p class='hex-code code5'>#------</p>
+      </div>
+    </section>
   </section>
 
   <button class='create-palette'>Create a New Palette</button>
-  <fieldset>
+
+  <fieldset class='save-project-container'>
     <legend>Save this Palette</legend>
     <form class="form-save-palette">
       <select name="Project">
@@ -30,7 +56,7 @@
     </form>
   </fieldset>
 
-  <fieldset>
+  <fieldset class='create-project-container'>
     <legend>Create a New Project</legend>
     <form class="form-save-project">
       <input type="text" class="new-project-input">
