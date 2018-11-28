@@ -5,6 +5,7 @@ exports.seed = function(knex, Promise) {
     .then(() => knex('projects').del())
     .then(() => {
       return Promise.all([
+        
         knex('projects').insert({
           name:'Winter'
         }, 'id')
@@ -18,7 +19,7 @@ exports.seed = function(knex, Promise) {
             hex3: '#22AA17',
             hex4: '#3326FF',
             hex5: '#AA2617',
-            project_id: 1
+            project_id: project[0]
           })
         })
 
