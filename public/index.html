@@ -49,7 +49,10 @@
   <fieldset class='save-project-container'>
     <legend>Save this Palette</legend>
     <form class="form-save-palette">
-      <select name="Choose Project" class='project-selection-new-palette'>
+      <label for="project-select">Choose a Project:</label>
+      <!-- <select id="project-select"> -->
+
+      <select name="Choose Project" id="project-select" class='project-selection-new-palette'>
 <!--         <option class='project-selection' value="project1">Project #1</option>
         <option class='project-selection' value="project2">Project #2</option> -->
       </select>
@@ -57,6 +60,11 @@
       <button class="save-palette-btn" disabled>Save Palette</button>
     </form>
   </fieldset>
+
+
+
+
+
 
   <fieldset class='create-project-container'>
     <legend>Create a New Project</legend>

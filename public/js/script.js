@@ -5,6 +5,9 @@ $(getProjects)
 // const hexCode = require('./utilities.js');
 
 const $createPalette = $('.create-palette')
+let currentColors = {}
+
+
 
 //create a new palette on load
 
@@ -24,6 +27,14 @@ function generatePalette() {
   const codeFive = generateHexCode()
 
   updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive)
+  currentColors = {
+    hex1: codeOne,
+    hex2: codeTwo,
+    hex3: codeThree,
+    hex4: codeFour,
+    hex5: codeFive,
+  }
+    console.log(currentColors)
 }
 
 function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
@@ -70,6 +81,8 @@ function lockColor() {
  //CREATE A NEW PROJECT
 
 $('.save-project-btn').on('click', saveProject)
+$('.save-palette-btn').on('click', savePalette)
+
 $('.new-palette-input').on('keyup', enableBtn)
 $('.new-project-input').on('keyup', enableBtn)
 
@@ -115,11 +128,50 @@ function getProjects() {
 
 function projectsSelection(projects) {
   return projects.forEach( project => {
-    let newOption = $(`<option class='show-project-selection' value='${project.name}'>${project.name}</option> `)
+    let newOption = $(`<option class='show-project-selection' value='${project.id}'>${project.name}</option> `)
     $('select').append(newOption)
   })
 }
 
+//Save a palette
+
+function savePalette(e) {
+  e.preventDefault()
+  const name = $('.new-palette-input').val()
+  const id = parseInt($('#project-select').val(), 10)
+  const newPalette = {
+    name, 
+    ...currentColors, 
+    project_id: id
+  }
+  postPalette(newPalette)
+}
+
+function postPalette(palette) {
+  const url = `/api/v1/projects/${palette.project_id}/palettes`
+  console.log(palette)
+
+  return fetch(url, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    body: JSON.stringify(palette)
+  })
+   .then(response => response.json())
+   .then(res => console.log('Successfully posted a new Palette:', JSON.stringify(res)))
+   .catch(error => console.log('Error posting palette:', error));
+}
+
+
+
+//       var urlmenu = document.getElementById( 'menu' );
+//       window.open( urlmenu.options[ urlmenu.selectedIndex ].value );
+// $('.selDiv option[value="SEL1"]')
+//grab the name
+//grab current hex codes
+//grab the project id
+//get that element
 
 
 
