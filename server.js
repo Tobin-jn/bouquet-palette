@@ -20,9 +20,31 @@ app.get('/api/v1/projects', (request, response) => {
       response.status(200).json(projects)
     })
     .catch((error) => {
-      response.status(500).json({ error })
+      response.status(500).json({ error: error.message })
     });
 });
+
+
+//post new project
+app.post('/api/v1/projects', (request, response) => {
+  const project = request.bodyParser
+
+  //request will come from our script.js
+
+  for(let requiredParam of ['name']) {
+    if(!project[requiredParam]) {
+      response.status(422).json({ error: 'Missing a Project Name' })
+    }
+  }
+
+  database('projects').insert(project, 'id')
+    .then(projectIds => {
+      response.status(201).json({ id: paperIds[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
+})
 
 
 //get specific project- so that we can post a new palette 
@@ -31,9 +53,6 @@ app.get('/api/v1/projects/:id', (request, response) => {
 })
 
 
-//post new project
-app.post('/api/v1/projects', (request, response) => {
-})
 
 
 //post new palette
