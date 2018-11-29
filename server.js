@@ -7,15 +7,14 @@ const database = require('knex')(configuration)
 
 app.use( bodyParser.json() );
 
-// app.locals
-
-app.set('port', process.env.PORT || 3000);
-app.locals.title = 'Palettes Galore'
-
 app.use(express.static('public'));
 
+app.set('port', process.env.PORT || 3000);
+app.locals.title = 'Palettes'
+
+
 //get all projects
-app.get('api/v1/projects', (request, response) => {
+app.get('/api/v1/projects', (request, response) => {
   database('projects').select()
     .then((projects) => {
       response.status(200).json(projects)
@@ -25,23 +24,25 @@ app.get('api/v1/projects', (request, response) => {
     });
 });
 
+
 //get specific project- so that we can post a new palette 
-app.get('api/v1/projects/:id', (request, response) => {
+app.get('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params;
 })
 
+
 //post new project
-app.post('api/v1/projects', (request, response) => {
+app.post('/api/v1/projects', (request, response) => {
 })
 
 
 //post new palette
-app.post('api/v1/projects/palettes', (request, response) => {
+app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
 })
 
 
 //delete exisiting palette
-app.delete('api/v1/proejects/palettes', (request, response) => {
+app.delete('/api/v1/projects/:project_id/palettes/:palette_id', (request, response) => {
 })
 
 
