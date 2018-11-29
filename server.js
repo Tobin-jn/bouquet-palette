@@ -42,9 +42,7 @@ app.post('/api/v1/projects', (request, response) => {
     });
 });
 
-
-
-//get specific project- so that we can post a new palette 
+//get specific project- 
 app.get('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params;
 
@@ -54,11 +52,34 @@ app.get('/api/v1/projects/:id', (request, response) => {
 })
 
 
-
-
 //post new palette
 app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
-})
+  const palette = request.body;
+  const { project_id } = request.params;
+
+  for (let requiredParameter of ['name', 'hex1', 'hex2', 'hex3', 'hex4', 'hex5', 'project_id']) {
+    if (!palette[requiredParameter]) {
+      return response.status(422).send({ error: `Expected format: { title: <String>, hex1: <String>, hex2: <String>, hex3: <String>, hex4: <String>, hex5: <String>, project_id: <Number>} You're missing a "${requiredParameter}" property.` })
+    }
+  }
+
+    // database('projects').where('id', project_id).select()
+    //   .then(project => {
+    //     response.status(201).json({ id: project[0] })
+    //   })
+    //   .catch(error => {
+    //     response.status(500).json({ error: error.message })
+    // });
+
+
+    database('palettes').insert(palette, 'id')
+    .then(palette => {
+      response.status(201).json({ id: palette[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    });
+});
 
 
 //delete exisiting palette
