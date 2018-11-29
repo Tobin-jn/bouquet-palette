@@ -52,6 +52,8 @@ app.get('/api/v1/projects/:id', (request, response) => {
 })
 
 //post new palette
+
+// how does this access the project_id??
 app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
   const palette = request.body;
   const { project_id } = request.params;

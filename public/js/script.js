@@ -2,6 +2,7 @@
 
 const $createPalette = $('.create-palette')
 
+//create a new palette on load
 
 $createPalette.on('click', generatePalette)
 $('.color1').on('click', lockColor)
@@ -10,7 +11,7 @@ $('.color3').on('click', lockColor)
 $('.color4').on('click', lockColor)
 $('.color5').on('click', lockColor)
 
-
+//refactor to make code in utility
 function generatePalette() {
   const codeOne = generateHexCode()
   const codeTwo = generateHexCode()
@@ -59,7 +60,46 @@ function lockColor() {
 }
  
 
+ //CREATE A NEW PROJECT
 
+$('.save-project-btn').on('click', saveProject)
+
+function saveProject(e) {
+  e.preventDefault()
+  let name = $('.new-project-input').val()
+  let projectName = { name }
+  postProject(projectName)
+  $('.new-project-input').val('')
+}
+
+function postProject(projectName) {
+  return fetch('/api/v1/projects', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    body: JSON.stringify(projectName)
+  })
+   .then(response => response.json())
+   .then(res => console.log('Successfully posted a new Project:', JSON.stringify(res)))
+   .catch(error => console.log('Error posting project:', error));
+}
+
+
+
+//type in a project name
+//input .new-project-input
+//button .save-project-btn
+//click save
+//grab the value
+//send value to backend via a post request
+
+
+
+
+
+
+//move to utitlity
 const generateHexCode = () => {
   const hexValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
   let hexCode = `#`
