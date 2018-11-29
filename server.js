@@ -51,7 +51,6 @@ app.get('/api/v1/projects/:id', (request, response) => {
     .catch(error => console.log(`Error fetching project: ${error.message}`))
 })
 
-
 //post new palette
 app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
   const palette = request.body;
@@ -72,6 +71,7 @@ app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
     });
 });
 
+//delete a palette
 app.delete('/api/v1/projects/:project_id/palettes/:palette_id', (request, response) => {
   const { project_id, palette_id } = request.params;
 
