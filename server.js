@@ -63,16 +63,7 @@ app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
     }
   }
 
-    // database('projects').where('id', project_id).select()
-    //   .then(project => {
-    //     response.status(201).json({ id: project[0] })
-    //   })
-    //   .catch(error => {
-    //     response.status(500).json({ error: error.message })
-    // });
-
-
-    database('palettes').insert(palette, 'id')
+  database('palettes').insert(palette, 'id')
     .then(palette => {
       response.status(201).json({ id: palette[0] })
     })
@@ -81,10 +72,15 @@ app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
     });
 });
 
-
-//delete exisiting palette
 app.delete('/api/v1/projects/:project_id/palettes/:palette_id', (request, response) => {
-})
+  const { project_id, palette_id } = request.params;
+
+  database('palettes').where('id', palette_id).del()
+    .then(palette => response.status(201).json({success: true}))
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
+});
 
 
 app.listen(app.get('port'), () => {
