@@ -34,7 +34,6 @@ function generatePalette() {
     hex4: codeFour,
     hex5: codeFive,
   }
-    console.log(currentColors)
 }
 
 function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
@@ -145,6 +144,8 @@ function savePalette(e) {
     project_id: id
   }
   postPalette(newPalette)
+  $('.new-palette-input').val('')
+  $('.save-palette-btn').prop('disabled', true);
 }
 
 function postPalette(palette) {
