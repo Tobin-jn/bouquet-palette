@@ -49,17 +49,8 @@ app.get('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params;
 
   database('projects').where('id', id).select()
-    .then(paper => response.status(200).json(project))
+    .then(project => response.status(200).json(project))
     .catch(error => console.log(`Error fetching project: ${error.message}`))
-})
-
-
-app.get('/api/v1/papers/:id', (request, response) => {
-  const { id } = request.params
-
-  database('papers').where('id', id).select()
-    .then(paper => response.status(200).json(paper))
-    .catch(error => console.log(`Error fetching paper: ${error.message}`))
 })
 
 
