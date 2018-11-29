@@ -59,6 +59,10 @@ function lockColor() {
   }
 }
  
+$( document ).ready(
+  generatePalette()
+  getProjects()
+  );
 
  //CREATE A NEW PROJECT
 
@@ -85,14 +89,16 @@ function postProject(projectName) {
    .catch(error => console.log('Error posting project:', error));
 }
 
+//Get Projects and populate dropdown
+
+function getProjects() {
+  return fetch('/api/v1/projects')
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log('Error getting all project:', error));
+}
 
 
-//type in a project name
-//input .new-project-input
-//button .save-project-btn
-//click save
-//grab the value
-//send value to backend via a post request
 
 
 
@@ -100,7 +106,7 @@ function postProject(projectName) {
 
 
 //move to utitlity
-const generateHexCode = () => {
+function generateHexCode() {
   const hexValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
   let hexCode = `#`
   for(let i = 0; i < 6; i++){
