@@ -1,3 +1,7 @@
+//invoke when document is ready
+$(generatePalette)
+$(getProjects)
+
 // const hexCode = require('./utilities.js');
 
 const $createPalette = $('.create-palette')
@@ -59,14 +63,24 @@ function lockColor() {
   }
 }
  
-$( document ).ready(
-  generatePalette()
-  getProjects()
-  );
+
+
+
 
  //CREATE A NEW PROJECT
 
 $('.save-project-btn').on('click', saveProject)
+$('.new-palette-input').on('keyup', enableBtn)
+$('.new-project-input').on('keyup', enableBtn)
+
+function enableBtn() {
+  if ($('.new-palette-input').val()) {
+    $('.save-palette-btn').prop('disabled', false);
+  }
+  if ($('.new-project-input').val()) {
+    $('.save-project-btn').prop('disabled', false);
+  }
+}
 
 function saveProject(e) {
   e.preventDefault()
@@ -74,6 +88,7 @@ function saveProject(e) {
   let projectName = { name }
   postProject(projectName)
   $('.new-project-input').val('')
+  $('.save-project-btn').prop('disabled', true);
 }
 
 function postProject(projectName) {
@@ -94,9 +109,18 @@ function postProject(projectName) {
 function getProjects() {
   return fetch('/api/v1/projects')
     .then(response => response.json())
-    .then(data => console.log(data))
+    .then(data => projectsSelection(data))
     .catch(error => console.log('Error getting all project:', error));
 }
+
+function projectsSelection(projects) {
+  return projects.forEach( project => {
+    let newOption = $(`<option class='show-project-selection' value='${project.name}'>${project.name}</option> `)
+    $('select').append(newOption)
+  })
+}
+
+
 
 
 
