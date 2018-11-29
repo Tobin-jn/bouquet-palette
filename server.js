@@ -12,7 +12,6 @@ app.use(express.static('public'));
 app.set('port', process.env.PORT || 3000);
 app.locals.title = 'Palettes'
 
-
 //get all projects
 app.get('/api/v1/projects', (request, response) => {
   database('projects').select()
@@ -24,32 +23,43 @@ app.get('/api/v1/projects', (request, response) => {
     });
 });
 
-
 //post new project
 app.post('/api/v1/projects', (request, response) => {
-  const project = request.bodyParser
+  const project = request.body
 
-  //request will come from our script.js
-
-  for(let requiredParam of ['name']) {
-    if(!project[requiredParam]) {
-      response.status(422).json({ error: 'Missing a Project Name' })
+  for (let requiredParameter of ['name']) {
+    if (!project[requiredParameter]) {
+      return response.status(422).send({ error: 'Missing a Project Name' });
     }
   }
 
   database('projects').insert(project, 'id')
-    .then(projectIds => {
-      response.status(201).json({ id: paperIds[0] })
+    .then(project => {
+      response.status(201).json({ id: project[0] })
     })
     .catch(error => {
       response.status(500).json({ error: error.message })
-    })
-})
+    });
+});
+
 
 
 //get specific project- so that we can post a new palette 
 app.get('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params;
+
+  database('projects').where('id', id).select()
+    .then(paper => response.status(200).json(project))
+    .catch(error => console.log(`Error fetching project: ${error.message}`))
+})
+
+
+app.get('/api/v1/papers/:id', (request, response) => {
+  const { id } = request.params
+
+  database('papers').where('id', id).select()
+    .then(paper => response.status(200).json(paper))
+    .catch(error => console.log(`Error fetching paper: ${error.message}`))
 })
 
 
