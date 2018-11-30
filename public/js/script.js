@@ -218,6 +218,8 @@ function generateHexCode() {
 
 
 ///ISSUES
+//DELETE a palette
+//lock icons- how to do it different??
 // when I eneter a new project, it automatically gets populated into the dropdown list
 // when I save a palette, it automatically populates if that project is selected
 //ORGANIZATION
