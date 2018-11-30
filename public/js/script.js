@@ -163,9 +163,7 @@ function postPalette(palette) {
    .catch(error => console.log('Error posting palette:', error));
 }
 
-
 //Get all palettes for a project and then display on the view
-// '/api/v1/projects/:project_id/palettes'
 $('.show-palettes-btn').on('click', showPalettes)
 
 function showPalettes(e) {
@@ -174,26 +172,36 @@ function showPalettes(e) {
   getPalettes(id)
 }
 
-
 function getPalettes(id) {
   const url = `/api/v1/projects/${id}/palettes`
 
   return fetch(url)
     .then(response => response.json())
-    .then(data => renderPalettes(data))
+    .then(data => clearPalettes(data))
     .catch(error => console.log(`Error getting palettes for Project ${id}:`, error))
+}
 
+function clearPalettes(data) {
+  if ($('.palette-wrapper').length){
+    $('.palette-wrapper').remove()
+  }
+  renderPalettes(data)
 }
 
 function renderPalettes(palettes) {
-  console.log(palettes)
+  return palettes.forEach( palette => {
+    const newPalettes = `<div class="palette-wrapper">
+    <h3 className="palette-name">${palette.name}</h3>
+    <p class='palette-color'>${palette.hex1}</p>
+    <p class='palette-color'>${palette.hex2}</p>
+    <p class='palette-color'>${palette.hex3}</p>
+    <p class='palette-color'>${palette.hex4}</p>
+    <p class='palette-color'>${palette.hex5}</p>
+    </div>`
+
+    $('.project-palettes').append(newPalettes)
+  })
 }
-
-
-
-
-
-
 
 
 //move to utitlity
@@ -205,3 +213,16 @@ function generateHexCode() {
   }
   return hexCode
 }
+
+
+
+
+///ISSUES
+// when I eneter a new project, it automatically gets populated into the dropdown list
+// when I save a palette, it automatically populates if that project is selected
+//ORGANIZATION
+  //API file
+  //utility file
+
+//make variables where necessary to DRY code
+//clean up HTML
