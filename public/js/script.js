@@ -164,9 +164,30 @@ function postPalette(palette) {
 }
 
 
+//Get all palettes for a project and then display on the view
+// '/api/v1/projects/:project_id/palettes'
+$('.show-palettes-btn').on('click', showPalettes)
+
+function showPalettes(e) {
+  e.preventDefault()
+  const id = parseInt($('#project-palette-select').val(), 10)
+  getPalettes(id)
+}
 
 
+function getPalettes(id) {
+  const url = `/api/v1/projects/${id}/palettes`
 
+  return fetch(url)
+    .then(response => response.json())
+    .then(data => renderPalettes(data))
+    .catch(error => console.log(`Error getting palettes for Project ${id}:`, error))
+
+}
+
+function renderPalettes(palettes) {
+  console.log(palettes)
+}
 
 
 
