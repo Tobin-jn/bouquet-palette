@@ -44,34 +44,44 @@
 
   <button class='create-palette'>Create a New Palette</button>
 
+<!-- Add placeholders -->
+<!-- Add aria labels -->
   <fieldset class='save-project-container'>
     <legend>Save this Palette</legend>
     <form class="form-save-palette">
-      <select name="Project">
-        <option class='project-selection' value="project1">Project #1</option>
-        <option class='project-selection' value="project2">Project #2</option>
+      <label for="project-select">Choose a Project:</label>
+      <!-- <select id="project-select"> -->
+
+      <select name="Choose Project" id="project-select" class='project-selection-new-palette'>
+<!--         <option class='project-selection' value="project1">Project #1</option>
+        <option class='project-selection' value="project2">Project #2</option> -->
       </select>
       <input type="text" class="new-palette-input">
-      <button class="save-palette-btn">Save Palette</button>
+      <button class="save-palette-btn" disabled>Save Palette</button>
     </form>
   </fieldset>
+
+
+
+
+
 
   <fieldset class='create-project-container'>
     <legend>Create a New Project</legend>
     <form class="form-save-project">
       <input type="text" class="new-project-input">
-      <button class="save-project-btn">Save Project</button>
+      <button class="save-project-btn" disabled>Save Project</button>
+      <p>Show a Project</p>
+      <select name="Show Project" id="project-palette-select" class='project-selection'>
+<!--         <option class='show-project-selection' value="project1">Project #1</option> -->
+      </select>
+      <button class="show-palettes-btn">Show Palettes</button>
     </form>
 
     <div class='project-wrapper'>    
-      <section class='project project-one'>
+      <section class='project-palettes'>
         <h3></h3>
         <div><p></p></div> 
-      </section>
-
-      <section class='project project-two'>
-        <h3></h3>
-        <div><p></p></div>
       </section>
     </div>
 
