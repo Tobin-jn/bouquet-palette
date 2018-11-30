@@ -150,7 +150,6 @@ function savePalette(e) {
 
 function postPalette(palette) {
   const url = `/api/v1/projects/${palette.project_id}/palettes`
-  console.log(palette)
 
   return fetch(url, {
     method: 'POST',

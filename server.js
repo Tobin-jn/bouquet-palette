@@ -53,7 +53,7 @@ app.get('/api/v1/projects/:id', (request, response) => {
 
 //get palettes of a specific project
 app.get('/api/v1/projects/:project_id/palettes', (request, response) => {
-  const { project_id } request.params;
+  const { project_id } = request.params;
 
   database('palettes').where('project_id', project_id).select()
     .then(palettes => response.status(200).json(palettes))
@@ -62,10 +62,8 @@ app.get('/api/v1/projects/:project_id/palettes', (request, response) => {
 
 //post new palette
 
-// how does this access the project_id??
 app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
   const palette = request.body;
-  const { project_id } = request.params;
 
   for (let requiredParameter of ['name', 'hex1', 'hex2', 'hex3', 'hex4', 'hex5', 'project_id']) {
     if (!palette[requiredParameter]) {
