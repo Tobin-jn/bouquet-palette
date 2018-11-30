@@ -166,13 +166,7 @@ function postPalette(palette) {
 
 
 
-//       var urlmenu = document.getElementById( 'menu' );
-//       window.open( urlmenu.options[ urlmenu.selectedIndex ].value );
-// $('.selDiv option[value="SEL1"]')
-//grab the name
-//grab current hex codes
-//grab the project id
-//get that element
+
 
 
 
