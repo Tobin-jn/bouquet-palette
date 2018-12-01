@@ -9,6 +9,12 @@
   flex-direction: row;
 }
 
+svg {
+  display: inline;
+  /*flex-direction: */
+  margin: 0;
+}
+
 .palette {
   position: relative;
   border: solid black 1px;

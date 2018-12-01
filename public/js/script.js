@@ -146,6 +146,8 @@ function selectPalette() {
   }
 }
 
+console.log($('#petals-1')[0].attributes.fill.value)
+
 
 
 // function postProject(projectName) {
