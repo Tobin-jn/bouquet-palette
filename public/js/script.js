@@ -1,5 +1,5 @@
 //invoke when document is ready
-$(generatePalette)
+// $(generatePalette)
 $(getProjects)
 
 // const hexCode = require('./utilities.js');
@@ -98,12 +98,20 @@ function saveProject(e) {
   e.preventDefault()
   let name = $('.new-project-input').val()
   let projectName = { name }
+  // populateDropDown(projectName)
   postProject(projectName)
+
   $('.new-project-input').val('')
   $('.save-project-btn').prop('disabled', true);
 }
 
+// function populateDropDown(project) {
+//   // let newOption = $(`<option class='show-project-selection'>${project.name}</option>`)
+//   // $('select').append(newOption)
+// }
+
 function postProject(projectName) {
+
   return fetch('/api/v1/projects', {
     method: 'POST',
     headers: {
@@ -112,8 +120,12 @@ function postProject(projectName) {
     body: JSON.stringify(projectName)
   })
    .then(response => response.json())
+   .then(res => location.reload())
    .then(res => console.log('Successfully posted a new Project:', JSON.stringify(res)))
    .catch(error => console.log('Error posting project:', error));
+
+  
+  console.log('here')
 }
 
 //Get Projects and populate dropdown
@@ -130,6 +142,7 @@ function projectsSelection(projects) {
     let newOption = $(`<option class='show-project-selection' value='${project.id}'>${project.name}</option> `)
     $('select').append(newOption)
   })
+
 }
 
 //Save a palette
@@ -191,20 +204,29 @@ function clearPalettes(data) {
 function renderPalettes(palettes) {
   return palettes.forEach( palette => {
     const newPalettes = `<div class="palette-wrapper">
-    <h3 className="palette-name">${palette.name}</h3>
-    <h4 class="delete-palette" value="${palette.id}">X</h4>
-    <p class='palette-color'>${palette.hex1}</p>
+    <h3 class="palette-name">${palette.name}</h3>
+    <div class="hex-codes">
+    <div class="hexCode-container">      
+      <div class="palette-dot" style="background:${palette.hex1}""></div>
+      <p class='palette-color'>${palette.hex1}</p>
+    </div>
     <p class='palette-color'>${palette.hex2}</p>
     <p class='palette-color'>${palette.hex3}</p>
     <p class='palette-color'>${palette.hex4}</p>
     <p class='palette-color'>${palette.hex5}</p>
+    </div>
+    <h4 class="delete-palette" value="${palette.id}">X</h4>
     </div>`
 
     $('.project-palettes').append(newPalettes)
   })
 }
 
+
+
+
 $('.project-palettes').on('click', removePalette)
+$('.project-palettes').on('click', selectPalette)
 
 function removePalette() {
   let paletteId; 
@@ -213,9 +235,8 @@ function removePalette() {
   if(event.target.className === 'delete-palette'){
     paletteId = event.target.attributes.value.value
     event.target.parentElement.remove()
+    deletePalette(paletteId, projectId)
   }
-
-  deletePalette(paletteId, projectId)
 }
 
 function deletePalette(paletteId, projectId) {
@@ -234,11 +255,16 @@ function deletePalette(paletteId, projectId) {
 
 
 
-function completeTodo() {
-  if (event.target.className === 'todo') {
-    event.target.classList.add('test')
-  } else {
-    event.target.classList.remove('test')
+function selectPalette() {
+  if(event.target.className === 'palette-name') {
+    const paletteColors = event.target.nextElementSibling.children
+    updateColors(
+      paletteColors[0].innerText,
+      paletteColors[1].innerText,
+      paletteColors[2].innerText,
+      paletteColors[3].innerText,
+      paletteColors[4].innerText
+    )
   }
 }
 
@@ -257,10 +283,9 @@ function generateHexCode() {
 
 
 ///ISSUES
-//DELETE a palette
+
 //lock icons- how to do it different??
-// when I eneter a new project, it automatically gets populated into the dropdown list
-// when I save a palette, it automatically populates if that project is selected
+
 //ORGANIZATION
   //API file
   //utility file
