@@ -1,8 +1,9 @@
+import {paletteHexCodes} from './utilities.js'
+
 //invoke when document is ready
-// $(generatePalette)
+
 $(getProjects)
 
-// const hexCode = require('./utilities.js');
 
 const $createPalette = $('.create-palette')
 let currentColors = {}
@@ -18,22 +19,18 @@ $('.color3').on('click', lockColor)
 $('.color4').on('click', lockColor)
 $('.color5').on('click', lockColor)
 
-//refactor to make code in utility
-function generatePalette() {
-  const codeOne = generateHexCode()
-  const codeTwo = generateHexCode()
-  const codeThree = generateHexCode()
-  const codeFour = generateHexCode()
-  const codeFive = generateHexCode()
 
-  updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive)
+function generatePalette() {
+  const codes = paletteHexCodes()
   currentColors = {
-    hex1: codeOne,
-    hex2: codeTwo,
-    hex3: codeThree,
-    hex4: codeFour,
-    hex5: codeFive,
+    hex1: codes.hex1,
+    hex2: codes.hex2,
+    hex3: codes.hex3,
+    hex4: codes.hex4,
+    hex5: codes.hex5,
   }
+
+  updateColors(codes.hex1, codes.hex2, codes.hex3, codes.hex4, codes.hex5)
 }
 
 function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
@@ -262,17 +259,6 @@ function selectPalette() {
       paletteColors[4].dataset.id
     )
   }
-}
-
-
-//move to utitlity
-function generateHexCode() {
-  const hexValues = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "A", "B", "C", "D", "E", "F"]
-  let hexCode = `#`
-  for(let i = 0; i < 6; i++){
-    hexCode += hexValues[Math.round(Math.random() * 15)]
-  }
-  return hexCode
 }
 
 
