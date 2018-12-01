@@ -203,27 +203,22 @@ function clearPalettes(data) {
 
 function renderPalettes(palettes) {
   return palettes.forEach( palette => {
-    const newPalettes = `<div class="palette-wrapper">
-    <h3 class="palette-name">${palette.name}</h3>
-    <div class="hex-codes">
-    <div class="hexCode-container">      
-      <div class="palette-dot" style="background:${palette.hex1}""></div>
-      <p class='palette-color'>${palette.hex1}</p>
-    </div>
-    <p class='palette-color'>${palette.hex2}</p>
-    <p class='palette-color'>${palette.hex3}</p>
-    <p class='palette-color'>${palette.hex4}</p>
-    <p class='palette-color'>${palette.hex5}</p>
-    </div>
-    <h4 class="delete-palette" value="${palette.id}">X</h4>
+    const newPalettes = `
+      <div class="palette-wrapper">
+        <h3 class="palette-name">${palette.name}</h3>
+        <div class="hex-codes">
+          <i class="fas fa-circle" style="color:${palette.hex1};" data-id="${palette.hex1}"></i>
+          <i class="fas fa-circle" style="color:${palette.hex2};" data-id="${palette.hex2}"></i>
+          <i class="fas fa-circle" style="color:${palette.hex3};" data-id="${palette.hex3}"></i>
+          <i class="fas fa-circle" style="color:${palette.hex4};" data-id="${palette.hex4}"></i>
+          <i class="fas fa-circle" style="color:${palette.hex5};" data-id="${palette.hex5}"></i>
+        </div>
+      <h4 class="delete-palette" value="${palette.id}">X</h4>
     </div>`
 
     $('.project-palettes').append(newPalettes)
   })
 }
-
-
-
 
 $('.project-palettes').on('click', removePalette)
 $('.project-palettes').on('click', selectPalette)
@@ -258,12 +253,13 @@ function deletePalette(paletteId, projectId) {
 function selectPalette() {
   if(event.target.className === 'palette-name') {
     const paletteColors = event.target.nextElementSibling.children
-    updateColors(
-      paletteColors[0].innerText,
-      paletteColors[1].innerText,
-      paletteColors[2].innerText,
-      paletteColors[3].innerText,
-      paletteColors[4].innerText
+    console.log(event.target.nextElementSibling.children)
+    updateColors(    
+      paletteColors[0].dataset.id,
+      paletteColors[1].dataset.id,
+      paletteColors[2].dataset.id,
+      paletteColors[3].dataset.id,
+      paletteColors[4].dataset.id
     )
   }
 }
