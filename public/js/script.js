@@ -2,6 +2,7 @@ import {paletteHexCodes} from './utilities.js'
 import {postProject, getProjects, postPalette, getPalettes,  deletePalette} from './apiCalls.js'
 
 $(getProjects)
+$(generatePalette)
 
 const $createPalette = $('.create-palette')
 let currentColors = {}
@@ -44,6 +45,7 @@ function generatePalette() {
 }
 
 
+
 function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
   if (!$('.flower1').attr('disabled')) {
     $('#flower1-petals1')[0].attributes.fill.value = codeOne
@@ -80,9 +82,11 @@ function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
 
 function lockColor() {
   if (!$(this).attr('disabled')) {
-    $(this).attr("disabled", true) 
+    $(this).attr("disabled", true)
+    $(this).css("border-bottom", "solid 2px #ba5a19")
   } else {
     $(this).removeAttr("disabled")
+    $(this).css("border-bottom", "solid 2px white")
   }
 }
  
