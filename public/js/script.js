@@ -192,6 +192,7 @@ function renderPalettes(palettes) {
   return palettes.forEach( palette => {
     const newPalettes = `<div class="palette-wrapper">
     <h3 className="palette-name">${palette.name}</h3>
+    <h4 class="delete-palette" value="${palette.id}">X</h4>
     <p class='palette-color'>${palette.hex1}</p>
     <p class='palette-color'>${palette.hex2}</p>
     <p class='palette-color'>${palette.hex3}</p>
@@ -201,6 +202,44 @@ function renderPalettes(palettes) {
 
     $('.project-palettes').append(newPalettes)
   })
+}
+
+$('.project-palettes').on('click', removePalette)
+
+function removePalette() {
+  let paletteId; 
+  const projectId = parseInt($('#project-palette-select').val(), 10)
+
+  if(event.target.className === 'delete-palette'){
+    paletteId = event.target.attributes.value.value
+    event.target.parentElement.remove()
+  }
+
+  deletePalette(paletteId, projectId)
+}
+
+function deletePalette(paletteId, projectId) {
+  const url = `/api/v1/projects/${projectId}/palettes/${paletteId}`
+
+  return fetch(url, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+  })
+   .then(response => response.json())
+   .then(res => console.log('Successfully deleted palette:', JSON.stringify(res)))
+   .catch(error => console.log('Error deleting palette:', error));
+}
+
+
+
+function completeTodo() {
+  if (event.target.className === 'todo') {
+    event.target.classList.add('test')
+  } else {
+    event.target.classList.remove('test')
+  }
 }
 
 
@@ -228,3 +267,4 @@ function generateHexCode() {
 
 //make variables where necessary to DRY code
 //clean up HTML
+//toggle() for lock functionality?? is toggle only css related?? Use for icon?
