@@ -1,23 +1,30 @@
 import {paletteHexCodes} from './utilities.js'
-
-//invoke when document is ready
+import {postProject, getProjects, postPalette, getPalettes,  deletePalette} from './apiCalls.js'
 
 $(getProjects)
-
 
 const $createPalette = $('.create-palette')
 let currentColors = {}
 
 
-
-//create a new palette on load
-
 $createPalette.on('click', generatePalette)
+
 $('.color1').on('click', lockColor)
 $('.color2').on('click', lockColor)
 $('.color3').on('click', lockColor)
 $('.color4').on('click', lockColor)
 $('.color5').on('click', lockColor)
+
+$('.save-project-btn').on('click', saveProject)
+$('.save-palette-btn').on('click', savePalette)
+
+$('.new-palette-input').on('keyup', enableBtn)
+$('.new-project-input').on('keyup', enableBtn)
+
+$('.show-palettes-btn').on('click', showPalettes)
+
+$('.project-palettes').on('click', removePalette)
+$('.project-palettes').on('click', selectPalette)
 
 
 function generatePalette() {
@@ -29,12 +36,11 @@ function generatePalette() {
     hex4: codes.hex4,
     hex5: codes.hex5,
   }
-
   updateColors(codes.hex1, codes.hex2, codes.hex3, codes.hex4, codes.hex5)
 }
 
-function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
 
+function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
   if (!$('.color1').attr('disabled')) {
     $('.color1').css('background', codeOne)
     $('.code1').text(codeOne).css('color', codeOne)
@@ -62,6 +68,7 @@ function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
   }
 }
 
+
 function lockColor() {
   if (!$(this).attr('disabled')) {
     $(this).attr("disabled", true) 
@@ -70,17 +77,6 @@ function lockColor() {
   }
 }
  
-
-
-
-
- //CREATE A NEW PROJECT
-
-$('.save-project-btn').on('click', saveProject)
-$('.save-palette-btn').on('click', savePalette)
-
-$('.new-palette-input').on('keyup', enableBtn)
-$('.new-project-input').on('keyup', enableBtn)
 
 function enableBtn() {
   if ($('.new-palette-input').val()) {
@@ -95,54 +91,12 @@ function saveProject(e) {
   e.preventDefault()
   let name = $('.new-project-input').val()
   let projectName = { name }
-  // populateDropDown(projectName)
   postProject(projectName)
 
   $('.new-project-input').val('')
   $('.save-project-btn').prop('disabled', true);
 }
 
-// function populateDropDown(project) {
-//   // let newOption = $(`<option class='show-project-selection'>${project.name}</option>`)
-//   // $('select').append(newOption)
-// }
-
-function postProject(projectName) {
-
-  return fetch('/api/v1/projects', {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json; charset=utf-8"
-    },
-    body: JSON.stringify(projectName)
-  })
-   .then(response => response.json())
-   .then(res => location.reload())
-   .then(res => console.log('Successfully posted a new Project:', JSON.stringify(res)))
-   .catch(error => console.log('Error posting project:', error));
-
-  
-  console.log('here')
-}
-
-//Get Projects and populate dropdown
-
-function getProjects() {
-  return fetch('/api/v1/projects')
-    .then(response => response.json())
-    .then(data => projectsSelection(data))
-    .catch(error => console.log('Error getting all project:', error));
-}
-
-function projectsSelection(projects) {
-  return projects.forEach( project => {
-    let newOption = $(`<option class='show-project-selection' value='${project.id}'>${project.name}</option> `)
-    $('select').append(newOption)
-  })
-
-}
-
-//Save a palette
 
 function savePalette(e) {
   e.preventDefault()
@@ -158,23 +112,6 @@ function savePalette(e) {
   $('.save-palette-btn').prop('disabled', true);
 }
 
-function postPalette(palette) {
-  const url = `/api/v1/projects/${palette.project_id}/palettes`
-
-  return fetch(url, {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json; charset=utf-8"
-    },
-    body: JSON.stringify(palette)
-  })
-   .then(response => response.json())
-   .then(res => console.log('Successfully posted a new Palette:', JSON.stringify(res)))
-   .catch(error => console.log('Error posting palette:', error));
-}
-
-//Get all palettes for a project and then display on the view
-$('.show-palettes-btn').on('click', showPalettes)
 
 function showPalettes(e) {
   e.preventDefault()
@@ -182,43 +119,6 @@ function showPalettes(e) {
   getPalettes(id)
 }
 
-function getPalettes(id) {
-  const url = `/api/v1/projects/${id}/palettes`
-
-  return fetch(url)
-    .then(response => response.json())
-    .then(data => clearPalettes(data))
-    .catch(error => console.log(`Error getting palettes for Project ${id}:`, error))
-}
-
-function clearPalettes(data) {
-  if ($('.palette-wrapper').length){
-    $('.palette-wrapper').remove()
-  }
-  renderPalettes(data)
-}
-
-function renderPalettes(palettes) {
-  return palettes.forEach( palette => {
-    const newPalettes = `
-      <div class="palette-wrapper">
-        <h3 class="palette-name">${palette.name}</h3>
-        <div class="hex-codes">
-          <i class="fas fa-circle" style="color:${palette.hex1};" data-id="${palette.hex1}"></i>
-          <i class="fas fa-circle" style="color:${palette.hex2};" data-id="${palette.hex2}"></i>
-          <i class="fas fa-circle" style="color:${palette.hex3};" data-id="${palette.hex3}"></i>
-          <i class="fas fa-circle" style="color:${palette.hex4};" data-id="${palette.hex4}"></i>
-          <i class="fas fa-circle" style="color:${palette.hex5};" data-id="${palette.hex5}"></i>
-        </div>
-      <h4 class="delete-palette" value="${palette.id}">X</h4>
-    </div>`
-
-    $('.project-palettes').append(newPalettes)
-  })
-}
-
-$('.project-palettes').on('click', removePalette)
-$('.project-palettes').on('click', selectPalette)
 
 function removePalette() {
   let paletteId; 
@@ -230,21 +130,6 @@ function removePalette() {
     deletePalette(paletteId, projectId)
   }
 }
-
-function deletePalette(paletteId, projectId) {
-  const url = `/api/v1/projects/${projectId}/palettes/${paletteId}`
-
-  return fetch(url, {
-    method: 'DELETE',
-    headers: {
-      "Content-Type": "application/json; charset=utf-8"
-    },
-  })
-   .then(response => response.json())
-   .then(res => console.log('Successfully deleted palette:', JSON.stringify(res)))
-   .catch(error => console.log('Error deleting palette:', error));
-}
-
 
 
 function selectPalette() {
@@ -260,6 +145,119 @@ function selectPalette() {
     )
   }
 }
+
+
+
+// function postProject(projectName) {
+
+//   return fetch('/api/v1/projects', {
+//     method: 'POST',
+//     headers: {
+//       "Content-Type": "application/json; charset=utf-8"
+//     },
+//     body: JSON.stringify(projectName)
+//   })
+//    .then(response => response.json())
+//    .then(res => location.reload())
+//    .then(res => console.log('Successfully posted a new Project:', JSON.stringify(res)))
+//    .catch(error => console.log('Error posting project:', error));
+// }
+
+//Get Projects and populate dropdown
+
+// function getProjects() {
+//   return fetch('/api/v1/projects')
+//     .then(response => response.json())
+//     .then(data => projectsSelection(data))
+//     .catch(error => console.log('Error getting all project:', error));
+// }
+
+// function projectsSelection(projects) {
+//   return projects.forEach( project => {
+//     let newOption = $(`<option class='show-project-selection' value='${project.id}'>${project.name}</option> `)
+//     $('select').append(newOption)
+//   })
+// }
+
+// function postPalette(palette) {
+//   const url = `/api/v1/projects/${palette.project_id}/palettes`
+
+//   return fetch(url, {
+//     method: 'POST',
+//     headers: {
+//       "Content-Type": "application/json; charset=utf-8"
+//     },
+//     body: JSON.stringify(palette)
+//   })
+//    .then(response => response.json())
+//    .then(res => console.log('Successfully posted a new Palette:', JSON.stringify(res)))
+//    .catch(error => console.log('Error posting palette:', error));
+// }
+
+
+
+
+// function getPalettes(id) {
+//   const url = `/api/v1/projects/${id}/palettes`
+
+//   return fetch(url)
+//     .then(response => response.json())
+//     .then(data => clearPalettes(data))
+//     .catch(error => console.log(`Error getting palettes for Project ${id}:`, error))
+// }
+
+// function clearPalettes(data) {
+//   if ($('.palette-wrapper').length){
+//     $('.palette-wrapper').remove()
+//   }
+//   renderPalettes(data)
+// }
+
+// function renderPalettes(palettes) {
+//   return palettes.forEach( palette => {
+//     const newPalettes = `
+//       <div class="palette-wrapper">
+//         <h3 class="palette-name">${palette.name}</h3>
+//         <div class="hex-codes">
+//           <i class="fas fa-circle" style="color:${palette.hex1};" data-id="${palette.hex1}"></i>
+//           <i class="fas fa-circle" style="color:${palette.hex2};" data-id="${palette.hex2}"></i>
+//           <i class="fas fa-circle" style="color:${palette.hex3};" data-id="${palette.hex3}"></i>
+//           <i class="fas fa-circle" style="color:${palette.hex4};" data-id="${palette.hex4}"></i>
+//           <i class="fas fa-circle" style="color:${palette.hex5};" data-id="${palette.hex5}"></i>
+//         </div>
+//       <h4 class="delete-palette" value="${palette.id}">X</h4>
+//     </div>`
+
+//     $('.project-palettes').append(newPalettes)
+//   })
+// }
+
+
+
+// function deletePalette(paletteId, projectId) {
+//   const url = `/api/v1/projects/${projectId}/palettes/${paletteId}`
+
+//   return fetch(url, {
+//     method: 'DELETE',
+//     headers: {
+//       "Content-Type": "application/json; charset=utf-8"
+//     },
+//   })
+//    .then(response => response.json())
+//    .then(res => console.log('Successfully deleted palette:', JSON.stringify(res)))
+//    .catch(error => console.log('Error deleting palette:', error));
+// }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
