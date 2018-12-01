@@ -6,7 +6,6 @@ const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration)
 
 app.use( bodyParser.json() );
-
 app.use(express.static('public'));
 
 app.set('port', process.env.PORT || 3000);
