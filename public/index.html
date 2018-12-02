@@ -10,15 +10,15 @@
 </head>
 <body>
   <header class='nav-bar'>
-    <h1 class='app-title'>Palette Picker</h1>
+    <h1 class='app-title'>BOUQUET <span class='app-title-span'>Picker</span></h1>
 
     <div class='create-project-container'>
-      <!-- <h4 class='project-text'>Create a New Project</h4> -->
       <form class="form-save-project">
         <input type="text" placeholder='Project Name' class="new-project-input">
-        <button class="save-project-btn" disabled>Save Project</button>
+        <button class="save-project-btn btn" disabled>Save Project</button>
       </form>
     <div>
+
   </header>
   
   <section class="flowers">
@@ -51,72 +51,56 @@
   </section>
 
 
-  <!-- <section class="palette-creator"> -->
-<!--     <ul class="palette">
-      <li><div class="slice-color color1"></div></li>
-      <li><div class="slice-color color2"></div></li>
-      <li><div class="slice-color color3"></div></li>
-      <li><div class="slice-color color4"></div></li>
-      <li><div class="slice-color color5"></div></li>
-    </ul>  --> 
-
-
-
-<!--     <section class="color-codes">
-      <div class="hexCode-container">      
-        <div class="color-circle circle1"></div>
-      </div>
-      <div class="hexCode-container"> 
-        <div class="color-circle circle2"></div>
-
-      </div>
-      <div class="hexCode-container"> 
-        <div class="color-circle circle3"></div>
-        
-      </div>
-      <div class="hexCode-container"> 
-        <div class="color-circle circle4"></div>
-        
-      </div>
-      <div class="hexCode-container"> 
-        <div class="color-circle circle5"></div>
-        
-      </div>
-    </section> -->
-  <!-- </section> -->
   <div class='create-palette-wrapper'>    
     <button class='create-palette'>Create a New Palette</button>
     <p class='instructions'>Click on a flower to save the color.</p>
   </div>
   
-  <section class='save-palette-wrapper'>  
 
-    <h3>Save Palette</h3>
 
-      <div class='choose-project-wrapper'>
-        <label for="project-select">Choose a Project:</label>
-        <select name="Choose Project" id="project-select" class='project-selection-new-palette'>
+
+
+
+  <section class='form-wrapper '>  
+
+    <h3 class='dropdown-label'>Save Palette</h3>
+
+      <div class='dropdown-wrapper'>
+        <label class='project-select' for="project-select">Choose a Project: </label>
+        <select name="Choose Project" id="project-select " class='dropdown'>
         </select>
       </div>
-    <form class="form-save-palette">
+    <div class='save-palette-container'>
+      <form class="form-save-palette">
 
 
       <input type="text" class="new-palette-input" placeholder='Palette Name'>
 
-      <button class="save-palette-btn" disabled>Save Palette</button>
+      <button class="save-palette-btn btn" disabled>Save Palette</button>
     </form>
+  </div>
+
   </section>
 
 <!-- Add placeholders -->
 <!-- Add aria labels -->
 
 
+    <section class="form-wrapper">
 
-      <p>Show a Project</p>
-      <select name="Show Project" id="project-palette-select" class='project-selection'>
+      <h3 class='dropdown-label'>Show Project</h3>
+
+      <div class='dropdown-wrapper'>      
+        <label class='project-select' for="project-select">Choose a Project: </label>
+        <select name="Show Project" id="project-palette-select" class='dropdown'>
 <!--         <option class='show-project-selection' value="project1">Project #1</option> -->
-      </select>
-      <button class="show-palettes-btn">Show Palettes</button>
+        </select>
+      </div>
+      <button class="show-palettes-btn btn">Show Palettes</button>
+    </section>
+
+
+
 
     <div class='project-wrapper'>    
       <section class='project-palettes'>

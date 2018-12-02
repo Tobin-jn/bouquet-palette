@@ -11,23 +11,26 @@ font-family: 'Andika', sans-serif;
 }
 
 .app-title {
-  color: red;
-  font-size: 3em;
+  color: #b14200;
+  font-size: 5em;
+  font-weight: 700;
   margin: 0;
   font-family: 'Amatic SC', cursive;
+}
+
+.app-title-span {
+  font-weight: 400;
 }
 
 .create-project-container {
   display: flex;
   flex-direction: row;
   align-items: center;
-
 }
-
 
 .project-text {
   margin: 0 10px;
-  color: #a5490a;
+  color: #b14200;
   font-size: 1.3em;
 }
 
@@ -38,27 +41,29 @@ font-family: 'Andika', sans-serif;
   align-items: center;
 }
 
-.new-project-input {
+.new-project-input,
+.new-palette-input {
   font-size: 1.7em;
-  /*margin-top: 14px;*/
-  border: 1px solid #a5490a;
+  width: 220px;
+  border: 1px solid #b14200;
+  padding-left: 10px;
 }
 
 .new-project-input::placeholder {
   font-size: .7em;
   padding-bottom: 10px;
-  color: #a5490a;
+  color: #b14200;
 }
 
-.save-project-btn {
+.btn {
   outline:none;
   height: 38px;
   text-align: center;
   width: 130px;
   /*border-radius:40px;*/
   background: #fff;
-  border: 1px solid #a5490a;
-  color: #a5490a;
+  border: 1px solid #b14200;
+  color: #b14200;
   letter-spacing:1px;
   text-shadow:0;
   font-size: 14px;
@@ -69,7 +74,8 @@ font-family: 'Andika', sans-serif;
   margin-left: 10px;
 }
 
-.save-project-btn:hover {
+
+.btn:hover {
   color: white;
   background: #6c9b1b;
   border: 1px solid #fff;
@@ -126,7 +132,6 @@ svg {
   padding: 20px;
 }
 
-
 .hexCode-container {
   display: flex;
   flex-direction: row;
@@ -147,6 +152,7 @@ svg {
 
 .instructions {
   text-align: center;
+  margin: 0 0 15px 0;
 }
 
 .create-palette-wrapper {
@@ -154,17 +160,6 @@ svg {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-}
-
-.save-palette-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-}
-
-.save-palette-wrapper h3 {
-  color: #a5490a;
 }
 
 .create-palette {
@@ -187,46 +182,47 @@ svg {
 }
 
 .create-palette:hover {
-  color: #a5490a;
+  color: #b14200;
   background: #fff;
-  border: 1px solid #a5490a;
+  border: 1px solid #b14200;
 }
 
-.save-palette-btn {
-  outline:none;
-  height: 38px;
-  text-align: center;
-  width: 130px;
-  /*border-radius:40px;*/
-  background: #fff;
-  border: 1px solid #a5490a;
-  color: #a5490a;
-  letter-spacing:1px;
-  text-shadow:0;
-  font-size: 14px;
-  font-weight:bold;
-  cursor: pointer;
-  font-family: 'Andika', sans-serif;
-  transition: all 0.25s ease;
-  margin-left: 10px;
+
+
+
+
+
+
+.form-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-.save-palette-btn:hover {
-  color: white;
-  background: #6c9b1b;
-  border: 1px solid #fff;
+.dropdown-label {
+  color: #b14200;
+  font-size: 1.5em;
+  margin: 0 10px 8px 0;
 }
 
-.choose-project-wrapper {
-  font-size: 1.7em;
-  /*margin-top: 14px;*/
-  border: 1px solid #a5490a;
-  color: #a5490a;
+.dropdown-wrapper {
+  font-size: 1.2em;
+  color: #b14200;
+  margin: 10px;
+  height: 36px;
 }
 
-#project-select {
-  font-size: 1em;
+.dropdown {
+  font-size: .8em;
 }
+
+.save-palette-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 
 .form-save-palette {
   margin: 0;
@@ -235,22 +231,19 @@ svg {
   align-items: center;
 }
 
-.new-palette-input {
-  font-size: 1.7em;
-  /*margin-top: 14px;*/
-  border: 1px solid #a5490a;
-}
 
 .new-palette-input::placeholder {
   font-size: .7em;
   padding-bottom: 10px;
-  color: #a5490a;
+  color: #b14200;
 }
 
-.save-project-container,
-.create-project-container {
-  margin: 20px;
+.show-palettes-btn {
+  margin-left: 0px;
 }
+
+
+
 
 
 
