@@ -2,7 +2,19 @@ import {paletteHexCodes} from './utilities.js'
 import {postProject, getProjects, postPalette, getPalettes,  deletePalette} from './apiCalls.js'
 
 $(getProjects)
-$(generatePalette)
+
+
+$(document).ready(function() {
+  if (JSON.parse(localStorage.getItem('currentColors'))) {
+    let colors= JSON.parse(localStorage.getItem('currentColors'));
+    console.log(colors)
+    updateColors(colors.hex1, colors.hex2, colors.hex3, colors.hex4, colors.hex5)
+    localStorage.clear()
+  } else {
+    generatePalette()
+  }
+});
+// $(generatePalette)
 
 const $createPalette = $('.create-palette')
 let currentColors = {}
@@ -28,10 +40,6 @@ $('.project-palettes').on('click', removePalette)
 $('.project-palettes').on('click', selectPalette)
 
 
-console.log($('#flower1-petals1')[0].attributes.fill.value)
-  
-  // [0].attributes.fill.value)
-
 function generatePalette() {
   const codes = paletteHexCodes()
   currentColors = {
@@ -43,7 +51,6 @@ function generatePalette() {
   }
   updateColors(codes.hex1, codes.hex2, codes.hex3, codes.hex4, codes.hex5)
 }
-
 
 
 function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
@@ -102,6 +109,8 @@ function enableBtn() {
 
 function saveProject(e) {
   e.preventDefault()
+  localStorage.setItem('currentColors', JSON.stringify(currentColors));
+
   let name = $('.new-project-input').val()
   let projectName = { name }
   postProject(projectName)
