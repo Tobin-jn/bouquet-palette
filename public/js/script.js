@@ -2,12 +2,9 @@ import {paletteHexCodes} from './utilities.js'
 import {postProject, getProjects, postPalette, getPalettes,  deletePalette} from './apiCalls.js'
 
 $(getProjects)
-
-
 $(document).ready(function() {
   if (JSON.parse(localStorage.getItem('currentColors'))) {
     let colors= JSON.parse(localStorage.getItem('currentColors'));
-    console.log(colors)
     currentColors = {...colors}
     updateColors(colors.hex1, colors.hex2, colors.hex3, colors.hex4, colors.hex5)
     localStorage.clear()
@@ -16,11 +13,10 @@ $(document).ready(function() {
   }
 });
 
-const $createPalette = $('.create-palette')
 let currentColors = {}
 
 
-$createPalette.on('click', generatePalette)
+$('.create-palette').on('click', generatePalette)
 
 $('.flower1').on('click', lockColor)
 $('.flower2').on('click', lockColor)
@@ -40,10 +36,105 @@ $('.project-palettes').on('click', removePalette)
 $('.project-palettes').on('click', selectPalette)
 
 
+ 
+
+function enableBtn() {
+  if ($('.new-palette-input').val()) {
+    $('.save-palette-btn').prop('disabled', false);
+  }
+  if ($('.new-project-input').val()) {
+    $('.save-project-btn').prop('disabled', false);
+  }
+}
+
+
 function generatePalette() {
   const codes = paletteHexCodes()
 
   updateColors(codes.hex1, codes.hex2, codes.hex3, codes.hex4, codes.hex5)
+}
+
+
+function lockColor() {
+  if (!$(this).attr('disabled')) {
+    $(this).attr("disabled", true)
+    $(this).css("border-bottom", "solid 3px #ba5a19")
+  } else {
+    $(this).removeAttr("disabled")
+    $(this).css("border-bottom", "solid 3px white")
+  }
+}
+
+
+function removePalette() {
+  let paletteId; 
+  const projectId = parseInt($('#project-palette-select').val(), 10)
+
+  if(event.target.className === 'delete-palette'){
+    paletteId = event.target.attributes.value.value
+    event.target.parentElement.remove()
+    deletePalette(paletteId, projectId)
+  }
+}
+
+
+function saveColors() {
+  currentColors = {
+    hex1: $('#flower1-petals1')[0].attributes.fill.value,
+    hex2: $('#flower2-petals1')[0].attributes.fill.value,
+    hex3: $('#flower3-petals1')[0].attributes.fill.value,
+    hex4: $('#flower4-petals1')[0].attributes.fill.value,
+    hex5: $('#flower5-petals1')[0].attributes.fill.value,
+  }
+}
+
+
+function savePalette(e) {
+  e.preventDefault()
+  const name = $('.new-palette-input').val()
+  const id = parseInt($('#project-select').val(), 10)
+  const newPalette = {
+    name, 
+    ...currentColors, 
+    project_id: id
+  }
+  postPalette(newPalette)
+  $('.new-palette-input').val('')
+  $('.save-palette-btn').prop('disabled', true);
+}
+
+
+function saveProject(e) {
+  e.preventDefault()
+  localStorage.setItem('currentColors', JSON.stringify(currentColors));
+
+  let name = $('.new-project-input').val()
+  let projectName = { name }
+  postProject(projectName)
+
+  $('.new-project-input').val('')
+  $('.save-project-btn').prop('disabled', true);
+}
+
+
+function selectPalette() {
+  if(event.target.className === 'palette-name') {
+    const paletteColors = event.target.nextElementSibling.children
+    updateColors(    
+      paletteColors[0].dataset.id,
+      paletteColors[1].dataset.id,
+      paletteColors[2].dataset.id,
+      paletteColors[3].dataset.id,
+      paletteColors[4].dataset.id
+    )
+  }
+}
+
+
+function showPalettes(e) {
+  e.preventDefault()
+  const id = parseInt($('#project-palette-select').val(), 10)
+  getPalettes(id)
 }
 
 
@@ -81,94 +172,5 @@ function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
   saveColors()
 }
 
-function saveColors() {
-  currentColors = {
-    hex1: $('#flower1-petals1')[0].attributes.fill.value,
-    hex2: $('#flower2-petals1')[0].attributes.fill.value,
-    hex3: $('#flower3-petals1')[0].attributes.fill.value,
-    hex4: $('#flower4-petals1')[0].attributes.fill.value,
-    hex5: $('#flower5-petals1')[0].attributes.fill.value,
-  }
-}
 
-
-function lockColor() {
-  if (!$(this).attr('disabled')) {
-    $(this).attr("disabled", true)
-    $(this).css("border-bottom", "solid 3px #ba5a19")
-  } else {
-    $(this).removeAttr("disabled")
-    $(this).css("border-bottom", "solid 3px white")
-  }
-}
- 
-
-function enableBtn() {
-  if ($('.new-palette-input').val()) {
-    $('.save-palette-btn').prop('disabled', false);
-  }
-  if ($('.new-project-input').val()) {
-    $('.save-project-btn').prop('disabled', false);
-  }
-}
-
-function saveProject(e) {
-  e.preventDefault()
-  localStorage.setItem('currentColors', JSON.stringify(currentColors));
-
-  let name = $('.new-project-input').val()
-  let projectName = { name }
-  postProject(projectName)
-
-  $('.new-project-input').val('')
-  $('.save-project-btn').prop('disabled', true);
-}
-
-
-function savePalette(e) {
-  e.preventDefault()
-  const name = $('.new-palette-input').val()
-  const id = parseInt($('#project-select').val(), 10)
-  const newPalette = {
-    name, 
-    ...currentColors, 
-    project_id: id
-  }
-  postPalette(newPalette)
-  $('.new-palette-input').val('')
-  $('.save-palette-btn').prop('disabled', true);
-}
-
-
-function showPalettes(e) {
-  e.preventDefault()
-  const id = parseInt($('#project-palette-select').val(), 10)
-  getPalettes(id)
-}
-
-
-function removePalette() {
-  let paletteId; 
-  const projectId = parseInt($('#project-palette-select').val(), 10)
-
-  if(event.target.className === 'delete-palette'){
-    paletteId = event.target.attributes.value.value
-    event.target.parentElement.remove()
-    deletePalette(paletteId, projectId)
-  }
-}
-
-
-function selectPalette() {
-  if(event.target.className === 'palette-name') {
-    const paletteColors = event.target.nextElementSibling.children
-    updateColors(    
-      paletteColors[0].dataset.id,
-      paletteColors[1].dataset.id,
-      paletteColors[2].dataset.id,
-      paletteColors[3].dataset.id,
-      paletteColors[4].dataset.id
-    )
-  }
-}
 
