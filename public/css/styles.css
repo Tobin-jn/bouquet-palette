@@ -108,7 +108,7 @@ svg {
 .flower3,
 .flower4,
 .flower5 {
-  border-bottom: solid 2px white;
+  border-bottom: solid 3px white;
   margin: 0 5px;
 }
 
@@ -243,9 +243,43 @@ svg {
 }
 
 article {
-  border: black 2px solid;
-  margin: 20px;
+  border-top: #b14200 3px solid;
+  margin: 20px 40px;
   padding: 10px;
+}
+
+
+.project-palettes {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.palette-wrapper {
+  padding: 0 20px;
+  margin: 5px;
+}
+
+.palette-name {
+  text-align: center;
+}
+
+.delete-palette {
+  border: 1px solid #b14200;
+  text-align: center;
+  font-size: 0.7em;
+  margin: 18px 10px;
+  cursor: pointer;
+  padding-bottom: 4px;
+}
+
+.delete-palette:hover {
+  background: #b14200;
+  color: #fff;
+}
+
+.fa-circle {
+  font-size: 1em;
 }
 
 

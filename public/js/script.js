@@ -83,10 +83,10 @@ function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
 function lockColor() {
   if (!$(this).attr('disabled')) {
     $(this).attr("disabled", true)
-    $(this).css("border-bottom", "solid 2px #ba5a19")
+    $(this).css("border-bottom", "solid 3px #ba5a19")
   } else {
     $(this).removeAttr("disabled")
-    $(this).css("border-bottom", "solid 2px white")
+    $(this).css("border-bottom", "solid 3px white")
   }
 }
  
