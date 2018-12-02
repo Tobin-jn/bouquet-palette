@@ -2,6 +2,7 @@ import {paletteHexCodes} from './utilities.js'
 import {postProject, getProjects, postPalette, getPalettes,  deletePalette} from './apiCalls.js'
 
 $(getProjects)
+$(generatePalette)
 
 const $createPalette = $('.create-palette')
 let currentColors = {}
@@ -9,11 +10,11 @@ let currentColors = {}
 
 $createPalette.on('click', generatePalette)
 
-$('.color1').on('click', lockColor)
-$('.color2').on('click', lockColor)
-$('.color3').on('click', lockColor)
-$('.color4').on('click', lockColor)
-$('.color5').on('click', lockColor)
+$('.flower1').on('click', lockColor)
+$('.flower2').on('click', lockColor)
+$('.flower3').on('click', lockColor)
+$('.flower4').on('click', lockColor)
+$('.flower5').on('click', lockColor)
 
 $('.save-project-btn').on('click', saveProject)
 $('.save-palette-btn').on('click', savePalette)
@@ -26,6 +27,10 @@ $('.show-palettes-btn').on('click', showPalettes)
 $('.project-palettes').on('click', removePalette)
 $('.project-palettes').on('click', selectPalette)
 
+
+console.log($('#flower1-petals1')[0].attributes.fill.value)
+  
+  // [0].attributes.fill.value)
 
 function generatePalette() {
   const codes = paletteHexCodes()
@@ -40,29 +45,35 @@ function generatePalette() {
 }
 
 
+
 function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
-  if (!$('.color1').attr('disabled')) {
-    $('.color1').css('background', codeOne)
+  if (!$('.flower1').attr('disabled')) {
+    $('#flower1-petals1')[0].attributes.fill.value = codeOne
+    $('#flower1-petals2')[0].attributes.fill.value = codeOne
     $('.code1').text(codeOne).css('color', codeOne)
     $('.circle1').css('background', codeOne)
   }
-  if (!$('.color2').attr('disabled')) {
-    $('.color2').css('background', codeTwo)
+  if (!$('.flower2').attr('disabled')) {
+    $('#flower2-petals1')[0].attributes.fill.value = codeTwo
+    $('#flower2-petals2')[0].attributes.fill.value = codeTwo
     $('.code2').text(codeTwo).css('color', codeTwo)
     $('.circle2').css('background', codeTwo)
   }
-  if (!$('.color3').attr('disabled')) {
-    $('.color3').css('background', codeThree)
+  if (!$('.flower3').attr('disabled')) {
+    $('#flower3-petals1')[0].attributes.fill.value = codeThree
+    $('#flower3-petals2')[0].attributes.fill.value = codeThree
     $('.code3').text(codeThree).css('color', codeThree)
     $('.circle3').css('background', codeThree)
   }
-  if (!$('.color4').attr('disabled')) {
-    $('.color4').css('background', codeFour)
+  if (!$('.flower4').attr('disabled')) {
+    $('#flower4-petals1')[0].attributes.fill.value = codeFour
+    $('#flower4-petals2')[0].attributes.fill.value = codeFour
     $('.code4').text(codeFour).css('color', codeFour)
     $('.circle4').css('background', codeFour)
   }
-  if (!$('.color5').attr('disabled')) {
-    $('.color5').css('background', codeFive)
+  if (!$('.flower5').attr('disabled')) {
+    $('#flower5-petals1')[0].attributes.fill.value = codeFive
+    $('#flower5-petals2')[0].attributes.fill.value = codeFive
     $('.code5').text(codeFive).css('color', codeFive)
     $('.circle5').css('background', codeFive)
   }
@@ -71,9 +82,11 @@ function updateColors(codeOne, codeTwo, codeThree, codeFour, codeFive) {
 
 function lockColor() {
   if (!$(this).attr('disabled')) {
-    $(this).attr("disabled", true) 
+    $(this).attr("disabled", true)
+    $(this).css("border-bottom", "solid 3px #ba5a19")
   } else {
     $(this).removeAttr("disabled")
+    $(this).css("border-bottom", "solid 3px white")
   }
 }
  
@@ -145,6 +158,7 @@ function selectPalette() {
     )
   }
 }
+
 
 
 

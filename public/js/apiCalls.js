@@ -76,7 +76,7 @@ function renderPalettes(palettes) {
           <i class="fas fa-circle" style="color:${palette.hex4};" data-id="${palette.hex4}"></i>
           <i class="fas fa-circle" style="color:${palette.hex5};" data-id="${palette.hex5}"></i>
         </div>
-      <h4 class="delete-palette" value="${palette.id}">X</h4>
+      <h4 class="delete-palette" value="${palette.id}">remove</h4>
     </div>`
 
     $('.project-palettes').append(newPalettes)
