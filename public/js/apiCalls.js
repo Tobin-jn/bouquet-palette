@@ -26,13 +26,13 @@ function projectsSelection(projects) {
   return projects.forEach( project => {
     let newOption = $(`<option class='show-project-selection' value='${project.id}'>${project.name}</option> `)
     $('select').append(newOption)
-  })
+  });
 }
 
 
 //POST A NEW PALETTE
 export function postPalette(palette) {
-  const url = `/api/v1/projects/${palette.project_id}/palettes`
+  const url = `/api/v1/projects/${palette.project_id}/palettes`;
 
   return fetch(url, {
     method: 'POST',
@@ -77,9 +77,9 @@ function renderPalettes(palettes) {
           <i class="fas fa-circle" style="color:${palette.hex5};" data-id="${palette.hex5}"></i>
         </div>
       <h4 class="delete-palette" value="${palette.id}">remove</h4>
-    </div>`
+    </div>`;
 
-    $('.project-palettes').append(newPalettes)
+    $('.project-palettes').append(newPalettes);
   })
 }
 
