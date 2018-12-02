@@ -1,27 +1,27 @@
-# palette-picker
-
-A site for....
+# Bouquet Picker
 
 ### Background/About
 
+Bouquet Picker is a palette picker for a flower bouquet. A user can generate random colors on the flowers. Flower colrs can be saved by clicking on a flower. Projects can be saved and inside a project, a user can save multiple palettes. A user can view their saved palettes for any specific project. By selecting a saved palette, they can view the colors on the flowers.
+
+This project has a postgres database for storing project and palette information. The server is built with Express.js, while the front end was build with jQuery.
+
 ### See it Live
 
-[title](https://www.example.com) on Heroku
+[Bouquet Picker](perfect-palette.herokuapp.com) on Heroku
 
-### API's used
-
-* Name
-* Name
 
 ### Primary JavaScript Technologies Used
 
-* Name
-* Name
+* jQuery
+* Express.js
+* Knex.js
 
 ### Screenshots
 
-#### Landing Page:
+#### Bouquet Picker:
 
+![alt text](image.jpg)
 ![alt text](image.jpg)
 
 #### Wireframe:
@@ -30,7 +30,7 @@ A site for....
 
 #### Additional Assets:
 
-### Setup
+<!-- ### Setup
 #### Frontend
 
 Clone the repo
@@ -39,19 +39,14 @@ Run ```npm install``` from the root directory
 
 Run ```npm start``` and visit localhost:3000 in your browser
 
-#### Backend
+#### Backend -->
 
-### Test Driven Development
 
-(Title of Site) uses Jest and Enzyme for frontend testing, and Mocha and Chai for backend testing.
-
-Run with ```npm test``` from the root directory
 
 ### Original Assignment
 
-[Project Name](https://www.example.com) from the Turing School of Software & Design
+[Palette Picker](http://frontend.turing.io/projects/palette-picker.html) from the Turing School of Software & Design
 
 ### Contributors
 
-* Name: [Github Profile](https://www.example.com)
 * Tobin Nelson: [Github Profile](https://github.com/Tobin-jn)

@@ -3,13 +3,13 @@ const bodyParser = require('body-parser');
 const app = express();
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
-const database = require('knex')(configuration)
+const database = require('knex')(configuration);
 
 app.use( bodyParser.json() );
 app.use(express.static('public'));
 
 app.set('port', process.env.PORT || 3000);
-app.locals.title = 'Palettes'
+app.locals.title = 'Palettes';
 
 //get all projects
 app.get('/api/v1/projects', (request, response) => {
@@ -48,7 +48,7 @@ app.get('/api/v1/projects/:id', (request, response) => {
   database('projects').where('id', id).select()
     .then(project => response.status(200).json(project))
     .catch(error => console.log(`Error fetching project: ${error.message}`))
-})
+});
 
 //get palettes of a specific project
 app.get('/api/v1/projects/:project_id/palettes', (request, response) => {
@@ -57,10 +57,9 @@ app.get('/api/v1/projects/:project_id/palettes', (request, response) => {
   database('palettes').where('project_id', project_id).select()
     .then(palettes => response.status(200).json(palettes))
     .catch(error => console.log(`Error fetching palettes for project ${project_id}: ${error.message}`))
-})
+});
 
 //post new palette
-
 app.post('/api/v1/projects/:project_id/palettes', (request, response) => {
   const palette = request.body;
 
@@ -93,7 +92,7 @@ app.delete('/api/v1/projects/:project_id/palettes/:palette_id', (request, respon
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}.`);
-})
+});
 
 
 
