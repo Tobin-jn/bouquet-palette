@@ -21,11 +21,11 @@ This project has a postgres database for storing project and palette information
 
 #### Bouquet Picker:
 
-![App](<img src='images/bouquet-picker.png' alt='Wireframe' width='700' >)
+<img src='images/bouquet-picker.png' alt='Wireframe' width='700' >
 
 #### Wireframe:
 
-![Wireframe](<img src='images/palette-picker-wireframe.png' alt='Wireframe' width='700' >)
+<img src='images/palette-picker-wireframe.png' alt='Wireframe' width='700' >
 
 
 <!-- ### Setup
