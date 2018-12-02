@@ -60,14 +60,14 @@ font-family: 'Andika', sans-serif;
   height: 38px;
   text-align: center;
   width: 130px;
-  /*border-radius:40px;*/
+  border-radius: 40px;
   background: #fff;
   border: 1px solid #b14200;
   color: #b14200;
-  letter-spacing:1px;
-  text-shadow:0;
+  letter-spacing: 1px;
+  text-shadow: 0;
   font-size: 14px;
-  font-weight:bold;
+  font-weight: bold;
   cursor: pointer;
   font-family: 'Andika', sans-serif;
   transition: all 0.25s ease;
@@ -240,6 +240,12 @@ svg {
 
 .show-palettes-btn {
   margin-left: 0px;
+}
+
+article {
+  border: black 2px solid;
+  margin: 20px;
+  padding: 10px;
 }
 
 
