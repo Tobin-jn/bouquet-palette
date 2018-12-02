@@ -48,7 +48,6 @@ font-family: 'Andika', sans-serif;
   font-size: .7em;
   padding-bottom: 10px;
   color: #a5490a;
-
 }
 
 .save-project-btn {
@@ -146,6 +145,28 @@ svg {
   font-size: 1.2em;
 }
 
+.instructions {
+  text-align: center;
+}
+
+.create-palette-wrapper {
+    display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.save-palette-wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.save-palette-wrapper h3 {
+  color: #a5490a;
+}
+
 .create-palette {
     outline: none;
     height: 50px;
@@ -169,6 +190,61 @@ svg {
   color: #a5490a;
   background: #fff;
   border: 1px solid #a5490a;
+}
+
+.save-palette-btn {
+  outline:none;
+  height: 38px;
+  text-align: center;
+  width: 130px;
+  /*border-radius:40px;*/
+  background: #fff;
+  border: 1px solid #a5490a;
+  color: #a5490a;
+  letter-spacing:1px;
+  text-shadow:0;
+  font-size: 14px;
+  font-weight:bold;
+  cursor: pointer;
+  font-family: 'Andika', sans-serif;
+  transition: all 0.25s ease;
+  margin-left: 10px;
+}
+
+.save-palette-btn:hover {
+  color: white;
+  background: #6c9b1b;
+  border: 1px solid #fff;
+}
+
+.choose-project-wrapper {
+  font-size: 1.7em;
+  /*margin-top: 14px;*/
+  border: 1px solid #a5490a;
+  color: #a5490a;
+}
+
+#project-select {
+  font-size: 1em;
+}
+
+.form-save-palette {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.new-palette-input {
+  font-size: 1.7em;
+  /*margin-top: 14px;*/
+  border: 1px solid #a5490a;
+}
+
+.new-palette-input::placeholder {
+  font-size: .7em;
+  padding-bottom: 10px;
+  color: #a5490a;
 }
 
 .save-project-container,

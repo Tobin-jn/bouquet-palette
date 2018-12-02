@@ -84,16 +84,28 @@
       </div>
     </section> -->
   <!-- </section> -->
-  <p>Click on a flower to save the color.</p>
-  <button class='create-palette'>Create a New Palette</button>
-  <form class="form-save-palette">
+  <div class='create-palette-wrapper'>    
+    <button class='create-palette'>Create a New Palette</button>
+    <p class='instructions'>Click on a flower to save the color.</p>
+  </div>
+  
+  <section class='save-palette-wrapper'>  
+
     <h3>Save Palette</h3>
-    <label for="project-select">Choose a Project:</label>
-    <select name="Choose Project" id="project-select" class='project-selection-new-palette'>
-    </select>
-    <input type="text" class="new-palette-input">
-    <button class="save-palette-btn" disabled>Save Palette</button>
-  </form>
+
+    <form class="form-save-palette">
+
+      <div class='choose-project-wrapper'>
+        <label for="project-select">Choose a Project:</label>
+        <select name="Choose Project" id="project-select" class='project-selection-new-palette'>
+        </select>
+      </div>
+
+      <input type="text" class="new-palette-input" placeholder='Palette Name'>
+
+      <button class="save-palette-btn" disabled>Save Palette</button>
+    </form>
+  </section>
 
 <!-- Add placeholders -->
 <!-- Add aria labels -->
