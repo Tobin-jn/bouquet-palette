@@ -102,6 +102,7 @@ svg {
 .flower5 {
   border-bottom: solid 3px white;
   margin: 0 5px;
+  transition: 0.5s;
 }
 
 .flower1:hover,
@@ -161,21 +162,21 @@ svg {
 }
 
 .create-palette {
-    outline: none;
-    height: 50px;
-    text-align: center;
-    width: 300px;
-    border: 1px solid #fff;
-    color: white;
-    background: #6c9b1b;
-    letter-spacing: 1px;
-    text-shadow: 0;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    font-family: 'Andika', sans-serif;
-    transition: all 0.25s ease;
-    margin-top: 25px;
+  outline: none;
+  height: 50px;
+  text-align: center;
+  width: 300px;
+  border: 1px solid #fff;
+  color: white;
+  background: #6c9b1b;
+  letter-spacing: 1px;
+  text-shadow: 0;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: 'Andika', sans-serif;
+  transition: all 0.25s ease;
+  margin-top: 25px;
 }
 
 .create-palette:hover {
