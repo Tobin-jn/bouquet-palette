@@ -160,7 +160,7 @@ svg {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .save-palette-wrapper h3 {
