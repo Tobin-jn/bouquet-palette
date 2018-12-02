@@ -1,13 +1,84 @@
+/*font-family: 'Andika', sans-serif;*/
+  /*font-family: 'Amatic SC', cursive;*/
+body {
+font-family: 'Andika', sans-serif;
+}
+
 .nav-bar {
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
 }
 
 .app-title {
   color: red;
   font-size: 3em;
   margin: 0;
+  font-family: 'Amatic SC', cursive;
 }
+
+.create-project-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+
+.project-text {
+  margin: 0 10px;
+  color: #a5490a;
+  font-size: 1.3em;
+}
+
+.form-save-project {
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.new-project-input {
+  font-size: 1.7em;
+  /*margin-top: 14px;*/
+  border: 1px solid #a5490a;
+}
+
+.new-project-input::placeholder {
+  font-size: .7em;
+  padding-bottom: 10px;
+  color: #a5490a;
+
+}
+
+.save-project-btn {
+  outline:none;
+  height: 38px;
+  text-align: center;
+  width: 130px;
+  /*border-radius:40px;*/
+  background: #fff;
+  border: 1px solid #a5490a;
+  color: #a5490a;
+  letter-spacing:1px;
+  text-shadow:0;
+  font-size: 14px;
+  font-weight:bold;
+  cursor: pointer;
+  font-family: 'Andika', sans-serif;
+  transition: all 0.25s ease;
+  margin-left: 10px;
+}
+
+.save-project-btn:hover {
+  color: white;
+  background: #6c9b1b;
+  border: 1px solid #fff;
+}
+
+
+
+
 
 .palette-creator {
   display: flex;
@@ -46,58 +117,6 @@ svg {
 }
 
 
-.palette {
-  position: relative;
-  border: solid black 1px;
-  padding: 0;
-  margin: 1em auto;
-  width: 25em;
-  height: 25em;
-  border-radius: 50%;
-  list-style: none;
-  overflow: hidden;
-}
-
-li {
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 50%;
-  height: 50%;
-  transform-origin: 0% 100%;
-}
-
-.slice-color {
-  position: absolute;
-  left: -100%;
-  width: 200%;
-  height: 200%;
-  text-align: center;
-  transform: skewY(18deg) rotate(deg);
-  padding-top: 20px;
-}
-
-li:first-child {
-  transform: rotate(0deg) skewY(-18deg);
-  background: red;    
-}
-li:nth-child(2) {
-  transform: rotate(72deg) skewY(-18deg);  
-  background: blue;       
-}
-li:nth-child(3) {
-  transform: rotate(144deg) skewY(-18deg);
-  background: green;         
-}
-li:nth-child(4) {
-  transform: rotate(216deg) skewY(-18deg); 
-  background: yellow;   
-}
-li:nth-child(5) {
-  transform: rotate(288deg) skewY(-18deg); 
-  background: purple;  
-}
 
 .project-wrapper {
   display: flex;
@@ -128,9 +147,28 @@ li:nth-child(5) {
 }
 
 .create-palette {
-  font-size: 1.5em;
-  padding: 10px;
-  margin: 10px;
+    outline: none;
+    height: 50px;
+    text-align: center;
+    width: 300px;
+    /* border-radius: 40px; */
+    border: 1px solid #fff;
+    color: white;
+    background: #6c9b1b;
+    letter-spacing: 1px;
+    text-shadow: 0;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Andika', sans-serif;
+    transition: all 0.25s ease;
+    margin-top: 15px;
+}
+
+.create-palette:hover {
+  color: #a5490a;
+  background: #fff;
+  border: 1px solid #a5490a;
 }
 
 .save-project-container,
