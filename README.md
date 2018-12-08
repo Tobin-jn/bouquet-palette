@@ -8,7 +8,7 @@ This project has a postgres database for storing project and palette information
 
 ### See it Live
 
-[Bouquet Picker](perfect-palette.herokuapp.com) on Heroku
+[Bouquet Picker](perfect-palette.herokuapp.com) on Heroku (perfect-palette.herokuapp.com)
 
 
 ### Primary JavaScript Technologies Used
