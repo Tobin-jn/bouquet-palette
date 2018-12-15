@@ -1,19 +1,23 @@
 {
   "name": "perfect-palette",
   "version": "1.0.0",
-  "description": "",
+  "description": "Palette Picker",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "NODE_ENV=test mocha --exit",
+    "testwc": "nyc --reporter=text mocha --exit",
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Tobin Nelson",
+  "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "express": "^4.16.4",
     "knex": "^0.15.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "pg": "^7.6.1"
   }
 }
