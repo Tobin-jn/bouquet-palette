@@ -113,8 +113,6 @@ describe('API Routes', () => {
     })
   });
 
-
-
   describe('GET /api/v1/projects/:id', () => {
     it('should return a specific project name', done => {
       chai
@@ -133,7 +131,7 @@ describe('API Routes', () => {
     })
   });
 
-  describe('/api/v1/projects/:project_id/palettes', () => {
+  describe('GET /api/v1/projects/:project_id/palettes', () => {
     it('should get all the palettes of a specific project', done => {
       chai
         .request(app)
@@ -162,12 +160,72 @@ describe('API Routes', () => {
           response.should.be.json;  
           response.should.be.a('error')
           response.body[0].should.have.property('Project does not exist in database')
+          done()
       })
     })
   });
 
-  describe('/api/v1/projects/:project_id/palettes/:palette_id', () => {
+  describe('POST /api/v1/projects/:project_id/palettes', () => {
+    it('should post a new palette', done => {
+      chai
+        .request(app)
+        .post()
+        .end((error, response) => {
+          done();
+        })
+    })
+    it('should return a 422 if any palette parameters are missing', done => {
+      chai
+        .request(app)
+        .post()
+        .end((error, response) => {
+          done();
+        })
+    })
+    it('should return a 422 if palette name already exists for that project', done => {
+      chai
+        .request(app)
+        .post()
+        .end((error, response) => {
+          done();
+        })
+    })
+    it('should return a 422 if project does not exist', done => {
+      chai
+        .request(app)
+        .post()
+        .end((error, response) => {
+          done();
+        })
+    })
+  });
 
+
+  describe('/api/v1/projects/:project_id/palettes/:palette_id', () => {
+    it('should delete a palette', done => {
+      chai
+        .request(app)
+        .post()
+        .end((error, response) => {
+          done();
+        })
+    })
+    it('should return a 422 if palette does not exist', done => {
+      chai
+        .request(app)
+        .post()
+        .end((error, response) => {
+          done();
+        })
+    })    
+    it('should return a 422 if project does not exist', done => {
+      chai
+        .request(app)
+        .post()
+        .end((error, response) => {
+          done();
+        })
+    })
   });
 });
 
