@@ -1,4 +1,3 @@
-
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('palettes').del()
@@ -22,7 +21,7 @@ exports.seed = function(knex, Promise) {
               hex4: '#3326FF',
               hex5: '#AA2617',
               project_id: project[0]
-            },
+            }
           ])
         })
 
@@ -32,3 +31,4 @@ exports.seed = function(knex, Promise) {
     })
     .catch(error => console.log(`Error seeding data: ${error.message}`))
 };
+
