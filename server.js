@@ -31,9 +31,19 @@ app.post('/api/v1/projects', (request, response) => {
     }
   }
 
-  database('projects').insert(project, 'id')
-    .then(project => {
-      response.status(201).json({ id: project[0] })
+  database('projects')
+    .where('name', project.name)
+    .select()
+    .then(foundProject => {
+      if(foundProject.length === 0){
+        database('projects')
+          .insert(project, 'id')
+          .then(newProject => {
+            response.status(201).json({ id: newProject[0] })
+          })
+      } else {
+        response.status(422).send({ error: 'Project Name Already Exists' });
+      }
     })
     .catch(error => {
       response.status(500).json({ error: error.message })
@@ -44,7 +54,9 @@ app.post('/api/v1/projects', (request, response) => {
 app.get('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params;
 
-  database('projects').where('id', id).select()
+  database('projects')
+    .where('id', id)
+    .select()
     .then(project => response.status(200).json(project))
     .catch(error => console.log(`Error fetching project: ${error.message}`))
 });
@@ -53,7 +65,9 @@ app.get('/api/v1/projects/:id', (request, response) => {
 app.get('/api/v1/projects/:project_id/palettes', (request, response) => {
   const { project_id } = request.params;
 
-  database('palettes').where('project_id', project_id).select()
+  database('palettes')
+    .where('project_id', project_id)
+    .select()
     .then(palettes => response.status(200).json(palettes))
     .catch(error => console.log(`Error fetching palettes for project ${project_id}: ${error.message}`))
 });

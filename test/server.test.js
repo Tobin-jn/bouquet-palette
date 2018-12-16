@@ -77,7 +77,7 @@ describe('API Routes', () => {
       })
     })
     it('should return a 422 if a project name already exists in the database', done => {
-      newproject = {
+      newProject = {
         name: "Winter"
       }
 
@@ -90,7 +90,7 @@ describe('API Routes', () => {
           response.should.be.json;
           response.should.be.a('object')
           response.body.should.have.property('error')
-          response.body.error.should.equal('Project Name already exists')
+          response.body.error.should.equal('Project Name Already Exists')
           done();
       })
     })
@@ -229,4 +229,39 @@ describe('API Routes', () => {
   });
 });
 
+
+    // .select()
+    // .where('name', project.name)
+    // .then( projects => {
+    //   if(projects.length === 0){
+    //     return database('project')
+    //       .insert({project})
+    //       .then(project => {
+    //         response.status(201).json({ id: project[0] })
+    //       })
+    //   } else {
+    //     return response.status(422).send({ error: 'Project Name already exists' });
+    //   }
+    // })
+
+//     .catch(error => {
+//       response.status(500).json({ error: error.message })
+//     });
+// });
+
+
+//       var val = "water";
+// return knex('ingredients').select()
+//         .where('name', val)
+//     .then(function(rows) {
+//         if (rows.length===0) {
+//             // no matching records found
+//             return knex('ingredients').insert({'name': val})
+//         } else {
+//             // return or throw - duplicate name found
+//         }
+//     })
+//     .catch(function(ex) {
+//         // you can find errors here.
+//     })
 
