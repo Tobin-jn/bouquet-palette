@@ -166,35 +166,98 @@ describe('API Routes', () => {
   });
 
   describe('POST /api/v1/projects/:project_id/palettes', () => {
-    it('should post a new palette', done => {
-      chai
-        .request(app)
-        .post()
-        .end((error, response) => {
-          done();
-        })
-    })
+    // it('should post a new palette', done => {
+    //   const newPalette = {
+    //     name: 'New Palette',
+    //     hex1: '#FFFFFF',
+    //     hex2: '#FFFFFF',
+    //     hex3: '#FFFFFF',
+    //     hex4: '#FFFFFF',
+    //     hex5: '#FFFFFF',
+    //     project_id: 1
+    //   }
+      
+    //   chai
+    //     .request(app)
+    //     .post('/api/v1/projects/1/palettes')
+    //     .send(newPalette)
+    //     .end((error, response) => {
+    //       response.should.have.status(201);
+    //       response.should.be.json;
+    //       response.should.be.a('object')
+    //       // response.body.should.have.property('id')
+    //       // response.body.id.should.equal(2)
+    //       done();
+    //     })
+    // })
     it('should return a 422 if any palette parameters are missing', done => {
+      const newPalette = {
+        hex1: '#FFFFFF',
+        hex2: '#FFFFFF',
+        hex3: '#FFFFFF',
+        hex4: '#FFFFFF',
+        hex5: '#FFFFFF',
+        project_id: 1
+      }
+
       chai
         .request(app)
-        .post()
+        .post('/api/v1/projects/1/palettes')
+        .send(newPalette)
         .end((error, response) => {
-          done();
-        })
-    })
-    it('should return a 422 if palette name already exists for that project', done => {
-      chai
-        .request(app)
-        .post()
-        .end((error, response) => {
+          response.should.have.status(422)
+          response.should.be.json;
+          response.should.be.a('object')
+          response.body.should.have.property('error')
+          response.body.error.should.equal('Expected format: { name: <String>, hex1: <String>, hex2: <String>, hex3: <String>, hex4: <String>, hex5: <String>, project_id: <Number>} Youre missing a name property.')
           done();
         })
     })
     it('should return a 422 if project does not exist', done => {
+      const newPalette = {
+        name: 'PaletteWhite',
+        hex1: '#FFFFFF',
+        hex2: '#FFFFFF',
+        hex3: '#FFFFFF',
+        hex4: '#FFFFFF',
+        hex5: '#FFFFFF',
+        project_id: 1
+      }
+
       chai
         .request(app)
-        .post()
+        .post('/api/v1/projects/29/palettes')
+        .send(newPalette)
         .end((error, response) => {
+          response.should.have.status(422)
+          response.should.be.json;
+          response.should.be.a('object')
+          response.body.should.have.property('error')
+          response.body.error.should.equal('Project Id does not exist')
+          done();
+        })
+    })
+    it('should return a 422 if palette name already exists for that project', done => {
+      const newPalette = {
+        name: 'Cold',
+        hex1: '#FFFFFF',
+        hex2: '#FFFFFF',
+        hex3: '#FFFFFF',
+        hex4: '#FFFFFF',
+        hex5: '#FFFFFF',
+        project_id: 1
+      }
+
+      chai
+        .request(app)
+        .post('/api/v1/projects/1/palettes')
+        .send(newPalette)
+        .end((error, response) => {
+          response.should.have.status(422)
+          response.should.be.json;
+          response.should.be.a('object')
+          response.body.should.have.property('error')
+          response.body.error.should.equal('Palette name already exists for this project')
           done();
         })
     })
@@ -228,40 +291,4 @@ describe('API Routes', () => {
     })
   });
 });
-
-
-    // .select()
-    // .where('name', project.name)
-    // .then( projects => {
-    //   if(projects.length === 0){
-    //     return database('project')
-    //       .insert({project})
-    //       .then(project => {
-    //         response.status(201).json({ id: project[0] })
-    //       })
-    //   } else {
-    //     return response.status(422).send({ error: 'Project Name already exists' });
-    //   }
-    // })
-
-//     .catch(error => {
-//       response.status(500).json({ error: error.message })
-//     });
-// });
-
-
-//       var val = "water";
-// return knex('ingredients').select()
-//         .where('name', val)
-//     .then(function(rows) {
-//         if (rows.length===0) {
-//             // no matching records found
-//             return knex('ingredients').insert({'name': val})
-//         } else {
-//             // return or throw - duplicate name found
-//         }
-//     })
-//     .catch(function(ex) {
-//         // you can find errors here.
-//     })
 
