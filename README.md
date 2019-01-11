@@ -19,7 +19,7 @@ The server is built with Express.js, while the front end was build with jQuery. 
 * Knex.js
 * PostgreSQL
 
-### Screenshots
+## Screenshots
 
 #### Bouquet Picker:
 
@@ -29,7 +29,7 @@ The server is built with Express.js, while the front end was build with jQuery. 
 
 <img src='images/palette-picker-wireframe.png' alt='Wireframe' width='450' >
 
-### API Endpoints
+## API Endpoints
 
 #### GET all Projects
 
@@ -59,7 +59,7 @@ All new palettes require the following parameters: name, hex1, hex2, hex3, hex4,
 
 ```/api/v1/projects/:project_id/palettes/:palette_id```
 
-### Setup
+## Setup
 
 Clone the repo
 
