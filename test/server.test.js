@@ -77,7 +77,7 @@ describe('API Routes', () => {
       })
     })
     it('should return a 422 if a project name already exists in the database', done => {
-      newproject = {
+      newProject = {
         name: "Winter"
       }
 
@@ -90,7 +90,7 @@ describe('API Routes', () => {
           response.should.be.json;
           response.should.be.a('object')
           response.body.should.have.property('error')
-          response.body.error.should.equal('Project Name already exists')
+          response.body.error.should.equal('Project Name Already Exists')
           done();
       })
     })
@@ -166,35 +166,98 @@ describe('API Routes', () => {
   });
 
   describe('POST /api/v1/projects/:project_id/palettes', () => {
-    it('should post a new palette', done => {
-      chai
-        .request(app)
-        .post()
-        .end((error, response) => {
-          done();
-        })
-    })
+    // it('should post a new palette', done => {
+    //   const newPalette = {
+    //     name: 'New Palette',
+    //     hex1: '#FFFFFF',
+    //     hex2: '#FFFFFF',
+    //     hex3: '#FFFFFF',
+    //     hex4: '#FFFFFF',
+    //     hex5: '#FFFFFF',
+    //     project_id: 1
+    //   }
+      
+    //   chai
+    //     .request(app)
+    //     .post('/api/v1/projects/1/palettes')
+    //     .send(newPalette)
+    //     .end((error, response) => {
+    //       response.should.have.status(201);
+    //       response.should.be.json;
+    //       response.should.be.a('object')
+    //       // response.body.should.have.property('id')
+    //       // response.body.id.should.equal(2)
+    //       done();
+    //     })
+    // })
     it('should return a 422 if any palette parameters are missing', done => {
+      const newPalette = {
+        hex1: '#FFFFFF',
+        hex2: '#FFFFFF',
+        hex3: '#FFFFFF',
+        hex4: '#FFFFFF',
+        hex5: '#FFFFFF',
+        project_id: 1
+      }
+
       chai
         .request(app)
-        .post()
+        .post('/api/v1/projects/1/palettes')
+        .send(newPalette)
         .end((error, response) => {
-          done();
-        })
-    })
-    it('should return a 422 if palette name already exists for that project', done => {
-      chai
-        .request(app)
-        .post()
-        .end((error, response) => {
+          response.should.have.status(422)
+          response.should.be.json;
+          response.should.be.a('object')
+          response.body.should.have.property('error')
+          response.body.error.should.equal('Expected format: { name: <String>, hex1: <String>, hex2: <String>, hex3: <String>, hex4: <String>, hex5: <String>, project_id: <Number>} Youre missing a name property.')
           done();
         })
     })
     it('should return a 422 if project does not exist', done => {
+      const newPalette = {
+        name: 'PaletteWhite',
+        hex1: '#FFFFFF',
+        hex2: '#FFFFFF',
+        hex3: '#FFFFFF',
+        hex4: '#FFFFFF',
+        hex5: '#FFFFFF',
+        project_id: 1
+      }
+
       chai
         .request(app)
-        .post()
+        .post('/api/v1/projects/29/palettes')
+        .send(newPalette)
         .end((error, response) => {
+          response.should.have.status(422)
+          response.should.be.json;
+          response.should.be.a('object')
+          response.body.should.have.property('error')
+          response.body.error.should.equal('Project Id does not exist')
+          done();
+        })
+    })
+    it('should return a 422 if palette name already exists for that project', done => {
+      const newPalette = {
+        name: 'Cold',
+        hex1: '#FFFFFF',
+        hex2: '#FFFFFF',
+        hex3: '#FFFFFF',
+        hex4: '#FFFFFF',
+        hex5: '#FFFFFF',
+        project_id: 1
+      }
+
+      chai
+        .request(app)
+        .post('/api/v1/projects/1/palettes')
+        .send(newPalette)
+        .end((error, response) => {
+          response.should.have.status(422)
+          response.should.be.json;
+          response.should.be.a('object')
+          response.body.should.have.property('error')
+          response.body.error.should.equal('Palette name already exists for this project')
           done();
         })
     })
@@ -228,5 +291,4 @@ describe('API Routes', () => {
     })
   });
 });
-
 
