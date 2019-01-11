@@ -25,7 +25,9 @@ The server is built with Express.js, while the front end was build with jQuery. 
 
 <img src='images/bouquet-picker.png' alt='Wireframe' width='800' >
 
-<img src='images/BouquetPicketClip.mov' alt='Wireframe' width='800' >
+<video width="320" height="240" controls>
+  <source src="images/BouquetPicketClip.mov" type="video/mp4">
+</video>
 
 #### Wireframe:
 
