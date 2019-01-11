@@ -2,7 +2,7 @@
 
 Bouquet Picker is a palette picker for a user to design a flower bouquet.
 
-### Background/About
+### About
 
 A user can generate random colors on the flowers. Flower colrs can be saved by clicking on a flower. Projects can be saved and inside a project, a user can save multiple palettes. A user can view their saved palettes for any specific project. By selecting a saved palette, they can view the colors on the flowers.
 
