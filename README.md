@@ -25,13 +25,13 @@ The server is built with Express.js, while the front end was build with jQuery. 
 
 <img src='images/bouquet-picker.png' alt='Wireframe' width='800' >
 
+<img src='images/BouquetPicketClip.mov' alt='Wireframe' width='800' >
+
 #### Wireframe:
 
-<img src='images/palette-picker-wireframe.png' alt='Wireframe' width='500' >
+<img src='images/palette-picker-wireframe.png' alt='Wireframe' width='450' >
 
-
-<!-- ### Setup
-#### Frontend
+### Setup
 
 Clone the repo
 
@@ -39,8 +39,11 @@ Run ```npm install``` from the root directory
 
 Run ```npm start``` and visit localhost:3000 in your browser
 
-#### Backend -->
+### Test Driven Development
 
+Bouquet Picker uses and Mocha and Chai for testing.
+
+Run with ```npm test``` from the root directory
 
 
 ### Original Assignment
