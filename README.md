@@ -10,7 +10,7 @@ The server is built with Express.js, while the front end was build with jQuery. 
 
 ### See it Live
 
-[Bouquet Picker](perfect-palette.herokuapp.com) on Heroku.
+[Bouquet Picker](https://perfect-palette.herokuapp.com/) on Heroku.
 
 ### Tech Stack
 
